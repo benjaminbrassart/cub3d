@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_destroy.c                                      :+:      :+:    :+:   */
+/*   input_key_handle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:25:43 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 15:18:05 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 15:06:02 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 15:11:33 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lifecycle.h"
+#include "cub.h"
+#include "mlx_handle.h"
 
 #include "mlx.h"
 
-#include <stdlib.h>
+#include <X11/keysym.h>
 
-void	cub_destroy(t_cub *cub)
+int	input_key_handle(int key, t_cub *cub)
 {
-	mlx_do_key_autorepeaton(cub->mlx);
-	mlx_destroy_window(cub->mlx, cub->win);
-	mlx_destroy_display(cub->mlx);
-	free(cub->mlx);
+	if (key == XK_Escape)
+		return (destroy_handle(cub));
+	return (0);
 }
