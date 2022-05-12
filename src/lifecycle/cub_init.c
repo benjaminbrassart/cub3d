@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 17:36:20 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:26:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	cub_init(t_cub *cub)
 {
 	int	res;
 
-	ft_memset(cub, 0, sizeof (*cub));
+	ft_memset(&cub->player, 0, sizeof (cub->player));
 	res = (_init_display(cub) && _init_window(cub));
 	if (res != RES_FAILURE)
 		_setup_handlers(cub);
@@ -65,4 +65,5 @@ static void	_setup_handlers(t_cub *cub)
 {
 	mlx_hook(cub->win, DestroyNotify, NoEventMask, destroy_handle, cub);
 	mlx_hook(cub->win, KeyPress, KeyPressMask, input_key_handle, cub);
+	mlx_loop_hook(cub->mlx, loop_handle, cub);
 }

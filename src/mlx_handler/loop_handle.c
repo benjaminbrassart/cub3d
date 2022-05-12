@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   loop_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 18:13:06 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 18:15:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#include "cub.h"
+#include "mlx_handle.h"
 
-# include "player.h"
+#include "mlx.h"
 
-typedef struct s_cub	t_cub;
+#include <math.h>
 
-union u_file
+int	loop_handle(t_cub *cub)
 {
-	char const	*path;
-	int			fd;
-};
-
-struct s_cub
-{
-	void			*mlx;
-	void			*win;
-	union u_file	map_file;
-	t_player		player;
-};
-
-#endif
+	mlx_pixel_put(cub->mlx, cub->win, roundf(cub->player.x),
+		roundf(cub->player.y), 0xFFFF0000); // TODO
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 17:34:43 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:17:15 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	cub_load(t_cub *cub)
 	int	fd;
 	int	res;
 
+	return (RES_SUCCESS);
 	fd = open(cub->map_file.path, O_RDONLY);
 	if (fd == -1)
 	{
