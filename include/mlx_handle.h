@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_run.c                                          :+:      :+:    :+:   */
+/*   mlx_handle.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:13:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 15:15:21 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 15:00:22 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 15:11:19 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "def.h"
-#include "lifecycle.h"
+#ifndef MLX_HANDLE_H
+# define MLX_HANDLE_H
 
-#include "mlx.h"
+# include "cub.h"
 
-int	cub_run(t_cub *cub)
-{
-	mlx_loop(cub->mlx);
-	return (RES_SUCCESS);
-}
+int	destroy_handle(t_cub *cub);
+int	input_key_handle(int key, t_cub *cub);
+
+#endif

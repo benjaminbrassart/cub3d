@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/12 14:55:00 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/12 15:14:37 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ SRC						= main.c \
 							lifecycle/cub_init.c \
 							lifecycle/cub_run.c \
 							lifecycle/cub_destroy.c \
+							mlx_handler/input_key_handle.c \
+							mlx_handler/destroy_handle.c \
 							utils/print_error.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
