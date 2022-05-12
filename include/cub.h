@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:26:48 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 14:23:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub.h"
-#include "def.h"
-#include "lifecycle.h"
+#ifndef CUB_H
+# define CUB_H
 
-#include <stdlib.h>
+typedef struct s_cub	t_cub;
 
-int	main(int argc, char const *argv[])
+struct s_cub
 {
-	t_cub	cub;
-	int		res;
+	void	*mlx;
+	void	*win;
+};
 
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	res = RES_FAILURE;
-	if (cub_init(&cub))
-		res = cub_run(&cub);
-	cub_destroy(&cub);
-	if (res == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+#endif

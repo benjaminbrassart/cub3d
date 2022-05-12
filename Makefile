@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/12 12:47:29 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/12 14:55:00 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ CFLAGS					+= -Iinclude
 CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
+CFLAGS					+= -I.
+
+DEBUG					= true
 
 ifeq ($(DEBUG), true)
 CFLAGS					+= -g3
@@ -38,6 +41,8 @@ endif
 LDLIBS					+= -lft
 LDLIBS					+= -lmlx
 LDLIBS					+= -lm
+LDLIBS					+= -lXext
+LDLIBS					+= -lX11
 LDFLAGS					+= -L$(DIR_LIBFT)
 LDFLAGS					+= -L$(DIR_MLX)
 
@@ -48,6 +53,9 @@ DIR_OBJ					= obj
 
 SRC						= main.c \
 							args/args_check.c \
+							lifecycle/cub_init.c \
+							lifecycle/cub_run.c \
+							lifecycle/cub_destroy.c \
 							utils/print_error.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)

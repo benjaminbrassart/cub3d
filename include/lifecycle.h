@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lifecycle.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 14:26:48 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 14:22:50 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 14:23:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub.h"
-#include "def.h"
-#include "lifecycle.h"
+#ifndef LIFECYCLE_H
+# define LIFECYCLE_H
 
-#include <stdlib.h>
+# include "cub.h"
 
-int	main(int argc, char const *argv[])
-{
-	t_cub	cub;
-	int		res;
+int		cub_init(t_cub *cub);
+int		cub_run(t_cub *cub);
+void	cub_destroy(t_cub *cub);
 
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	res = RES_FAILURE;
-	if (cub_init(&cub))
-		res = cub_run(&cub);
-	cub_destroy(&cub);
-	if (res == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+#endif
