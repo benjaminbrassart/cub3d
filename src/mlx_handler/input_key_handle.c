@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:06:02 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 19:28:36 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:36:04 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 #include "mlx.h"
 
 #include <math.h>
+#include <stddef.h>
 #include <X11/keysym.h>
 
 static void	_move_player_x(t_player *player, int factor);
 static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
-
-#include <stdio.h>
 
 int	input_key_handle(int key, t_cub *cub)
 {
@@ -38,7 +37,6 @@ int	input_key_handle(int key, t_cub *cub)
 	_move_player_x(&cub->player, input->factors.x);
 	_move_player_y(&cub->player, input->factors.y);
 	_move_player_yaw(&cub->player, input->factors.yaw);
-	printf("%f\n", cub->player.yaw);
 	return (0);
 }
 
