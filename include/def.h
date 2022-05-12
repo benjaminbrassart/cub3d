@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   def.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 12:35:30 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 11:39:16 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 12:34:51 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "def.h"
+#ifndef DEF_H
+# define DEF_H
 
-#include <stdlib.h>
+# define PROGNAME		"cub3d"
+# define FILEEXT		".cub"
+# define RES_FAILURE	0
+# define RES_SUCCESS	1
 
-int	main(int argc, char const *argv[])
-{
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+#endif
