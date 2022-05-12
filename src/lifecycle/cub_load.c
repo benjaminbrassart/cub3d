@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub_load.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 17:35:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/12 17:34:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub.h"
+#include "cuberr.h"
 #include "def.h"
 #include "lifecycle.h"
 
-#include <stdlib.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
 
-int	main(int argc, char const *argv[])
+// TODO parsing
+static int	__load(t_cub *cub)
 {
-	t_cub	cub;
-	int		res;
+	(void)cub;
+	return (RES_FAILURE);
+}
 
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	res = RES_FAILURE;
-	cub.map_file.path = argv[1];
-	if (cub_init(&cub))
-		res = (cub_load(&cub) && cub_run(&cub));
-	cub_destroy(&cub);
-	if (res == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+int	cub_load(t_cub *cub)
+{
+	int	fd;
+	int	res;
+
+	fd = open(cub->map_file.path, O_RDONLY);
+	if (fd == -1)
+	{
+		print_error(cub->map_file.path, strerror(errno));
+		return (RES_FAILURE);
+	}
+	cub->map_file.fd = fd;
+	res = __load(cub);
+	close(fd);
+	return (res);
 }

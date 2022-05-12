@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 15:18:30 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:36:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "def.h"
 #include "mlx_handle.h"
 
+#include "ft.h"
 #include "mlx.h"
 
 #include <stddef.h>
@@ -30,6 +31,7 @@ int	cub_init(t_cub *cub)
 {
 	int	res;
 
+	ft_memset(cub, 0, sizeof (*cub));
 	res = (_init_display(cub) && _init_window(cub));
 	if (res != RES_FAILURE)
 		_setup_handlers(cub);
