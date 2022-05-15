@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:55:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 13:03:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 
 # define MOVEMENT_SPEED	0.02f
 // RADIANS
-# define CAMERA_SPEED	1.0f
+# define CAMERA_SPEED	0.1f
 
 #endif
