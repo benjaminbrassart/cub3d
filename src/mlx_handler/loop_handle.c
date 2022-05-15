@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:55:30 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 13:02:32 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	factors_add(struct s_factors const *src, struct s_factors *dest)
 	dest->yaw += src->yaw;
 }
 
-#include <stdio.h>
-
 int	loop_handle(t_cub *cub)
 {
 	size_t				n;
@@ -55,7 +53,6 @@ int	loop_handle(t_cub *cub)
 	_move_player_x(&cub->player, factors.x);
 	_move_player_y(&cub->player, factors.y);
 	_move_player_yaw(&cub->player, factors.yaw);
-	mlx_pixel_put(cub->mlx, cub->win, cub->player.x, cub->player.y, 0xFFFFFFFF);
 	return (0);
 }
 
