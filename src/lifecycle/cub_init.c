@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 19:26:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:45:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static int	_init_window(t_cub *cub)
 
 static void	_setup_handlers(t_cub *cub)
 {
-	mlx_hook(cub->win, DestroyNotify, NoEventMask, destroy_handle, cub);
-	mlx_hook(cub->win, KeyPress, KeyPressMask, input_key_handle, cub);
 	mlx_loop_hook(cub->mlx, loop_handle, cub);
+	mlx_hook(cub->win, DestroyNotify, NoEventMask, destroy_handle, cub);
+	mlx_hook(cub->win, KeyPress, KeyPressMask, key_press_handle, cub);
+	mlx_hook(cub->win, KeyRelease, KeyReleaseMask, key_release_handle, cub);
 }

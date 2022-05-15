@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   key_release_handle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 17:49:15 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:22:33 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/15 12:41:17 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 12:41:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#include "cub.h"
+#include "input.h"
+#include "mlx_handle.h"
 
-# include "input.h"
+#include "mlx.h"
 
-typedef struct s_player	t_player;
+#include <stddef.h>
 
-struct s_player
+int	key_release_handle(int key, t_cub *cub)
 {
-	float				x;
-	float				y;
-	float				yaw;
-	enum e_input_mask	input_mask;
-};
+	struct s_input const	*input = get_input(key);
 
-#endif
+	if (input == NULL)
+		return (0);
+	cub->player.input_mask &= ~input->action.mask;
+	return (0);
+}
