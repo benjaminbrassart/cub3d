@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/15 16:57:19 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/15 18:42:39 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ SRC						= main.c \
 							mlx_handler/key_release_handle.c \
 							mlx_handler/destroy_handle.c \
 							utils/print_error.c \
-							utils/get_input.c
+							utils/get_input.c \
+							utils/rgb.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
 

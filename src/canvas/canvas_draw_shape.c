@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_clear.c                                     :+:      :+:    :+:   */
+/*   canvas_draw_shape.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 19:33:03 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/15 20:03:36 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 20:42:34 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 
-void	canvas_clear(t_canvas *canvas)
-{
-	unsigned int	x;
-	unsigned int	y;
+#include <stddef.h>
 
-	y = 0;
-	while (y < canvas->height)
-	{
-		x = 0;
-		while (x < canvas->width)
-		{
-			canvas_unsafe_setpx(canvas, x, y, 0xFF000000);
-			++x;
-		}
-		++y;
-	}
+static void	_draw_rect(t_canvas *canvas, t_shape *shape, uint32_t color)
+{
+
+}
+
+void	canvas_draw_shape(t_canvas *canvas, t_shape_draw_fn *fn, t_shape *shape,
+	uint32_t color)
+{
+	if (canvas != NULL && fn != NULL && shape != NULL)
+		fn(canvas, shape, color);
 }

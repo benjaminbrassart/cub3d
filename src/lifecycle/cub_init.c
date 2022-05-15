@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 18:03:15 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 20:46:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static int	_init_screen(t_cub *cub)
 	cub->screen.height = WIN_HEIGHT;
 	cub->screen.width = WIN_WIDTH;
 	canvas_clear(&cub->screen);
-	canvas_unsafe_setpx(&cub->screen, 300, 300, 0xFFFF0000);
 	return (1);
 }
 

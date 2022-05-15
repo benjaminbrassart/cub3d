@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 16:56:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:27:04 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "player.h"
 
+# include <stdbool.h>
 # include <stdint.h>
 
 typedef struct s_cub	t_cub;
@@ -35,7 +36,7 @@ struct s_canvas
 	int				endian;
 	unsigned int	height;
 	unsigned int	width;
-	int				updated;
+	bool			updated;
 };
 
 struct s_cub

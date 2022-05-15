@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_clear.c                                     :+:      :+:    :+:   */
+/*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 19:33:03 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/15 18:30:06 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 18:34:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
+#include "utils.h"
 
-void	canvas_clear(t_canvas *canvas)
+uint32_t	rgb(uint8_t r, uint8_t g, uint8_t b)
 {
-	unsigned int	x;
-	unsigned int	y;
+	return ((0xFF << 24) | (r << 16) | (g << 8) | (b << 0));
+}
 
-	y = 0;
-	while (y < canvas->height)
-	{
-		x = 0;
-		while (x < canvas->width)
-		{
-			canvas_unsafe_setpx(canvas, x, y, 0xFF000000);
-			++x;
-		}
-		++y;
-	}
+uint32_t	rgba(uint8_t r, uint8_t g, uint8_t b, float alpha)
+{
+	uint8_t	a;
+
+	if (alpha > 1.0f)
+		alpha = 1.0f;
+	if (alpha < 0.0f)
+		alpha = 0.0f;
+	a = (alpha * 255);
+	return ((a << 24) | (r << 16) | (g << 8) | (b << 0));
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:38:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 17:13:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:26:53 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	canvas_unsafe_setpx(t_canvas *canvas, unsigned int x, unsigned int y,
 	if (*dst != color)
 	{
 		*dst = color;
-		canvas->updated = 1;
+		canvas->updated = true;
 	}
 }

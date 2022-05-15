@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 17:21:37 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 20:47:02 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "cub.h"
 #include "input.h"
 #include "mlx_handle.h"
+#include "utils.h"
 
 #include "ft.h"
 #include "mlx.h"
@@ -36,7 +37,7 @@ int	loop_handle(t_cub *cub)
 	if (cub->screen.updated)
 	{
 		canvas_draw(cub, &cub->screen, 0, 0);
-		cub->screen.updated = 0;
+		cub->screen.updated = false;
 	}
 	ft_memset(&factors, 0, sizeof (factors));
 	n = 0;
