@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 17:10:27 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:03:15 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	_init_window(t_cub *cub)
 
 static int	_init_screen(t_cub *cub)
 {
-	cub->screen.img = mlx_new_image(cub->mlx, WIN_HEIGHT, WIN_WIDTH);
+	cub->screen.img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (cub->screen.img == NULL)
 	{
 		print_error("minilibx", "Failed to initialize canvas");
