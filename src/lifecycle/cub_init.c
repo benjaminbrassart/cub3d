@@ -6,12 +6,13 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:45:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 17:10:27 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
 
+#include "canvas.h"
 #include "cub.h"
 #include "cuberr.h"
 #include "def.h"
@@ -25,6 +26,7 @@
 
 static int	_init_display(t_cub *cub);
 static int	_init_window(t_cub *cub);
+static int	_init_screen(t_cub *cub);
 static void	_setup_handlers(t_cub *cub);
 
 int	cub_init(t_cub *cub)
@@ -32,7 +34,7 @@ int	cub_init(t_cub *cub)
 	int	res;
 
 	ft_memset(&cub->player, 0, sizeof (cub->player));
-	res = (_init_display(cub) && _init_window(cub));
+	res = (_init_display(cub) && _init_window(cub) && _init_screen(cub));
 	if (res != RES_FAILURE)
 		_setup_handlers(cub);
 	return (res);
@@ -59,6 +61,28 @@ static int	_init_window(t_cub *cub)
 		return (RES_FAILURE);
 	}
 	return (RES_SUCCESS);
+}
+
+static int	_init_screen(t_cub *cub)
+{
+	cub->screen.img = mlx_new_image(cub->mlx, WIN_HEIGHT, WIN_WIDTH);
+	if (cub->screen.img == NULL)
+	{
+		print_error("minilibx", "Failed to initialize canvas");
+		return (0);
+	}
+	cub->screen.raw = mlx_get_data_addr(cub->screen.img, &cub->screen.bpp,
+			&cub->screen.line_len, &cub->screen.endian);
+	if (cub->screen.raw == NULL)
+	{
+		print_error("minilibx", "Failed to initialize canvas");
+		return (0);
+	}
+	cub->screen.height = WIN_HEIGHT;
+	cub->screen.width = WIN_WIDTH;
+	canvas_clear(&cub->screen);
+	canvas_unsafe_setpx(&cub->screen, 300, 300, 0xFFFF0000);
+	return (1);
 }
 
 static void	_setup_handlers(t_cub *cub)

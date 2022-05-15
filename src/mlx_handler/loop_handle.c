@@ -6,12 +6,13 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 16:27:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 17:21:37 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
 
+#include "canvas.h"
 #include "cub.h"
 #include "input.h"
 #include "mlx_handle.h"
@@ -32,6 +33,11 @@ int	loop_handle(t_cub *cub)
 	size_t				n;
 	struct s_factors	factors;
 
+	if (cub->screen.updated)
+	{
+		canvas_draw(cub, &cub->screen, 0, 0);
+		cub->screen.updated = 0;
+	}
 	ft_memset(&factors, 0, sizeof (factors));
 	n = 0;
 	while (n < (sizeof (g_inputs) / sizeof (*g_inputs)))

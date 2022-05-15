@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config.h                                           :+:      :+:    :+:   */
+/*   canvas_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 17:12:09 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 17:12:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONFIG_H
-# define CONFIG_H
+#include "canvas.h"
 
-# define WIN_WIDTH		1400
-# define WIN_HEIGHT		300
-# define WIN_TITLE		"CUB3D"
+void	canvas_clear(t_canvas *canvas)
+{
+	unsigned int	x;
+	unsigned int	y;
 
-# define MOVEMENT_SPEED	0.02f
-// RADIANS
-# define CAMERA_SPEED	0.1f
-
-#endif
+	y = 0;
+	while (y < canvas->height)
+	{
+		x = 0;
+		while (x < canvas->width)
+		{
+			canvas_unsafe_setpx(canvas, x, y, 0xFF888888);
+			++x;
+		}
+		++y;
+	}
+}

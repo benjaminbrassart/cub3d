@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/15 12:40:35 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/15 16:57:19 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,10 @@ DIR_OBJ					= obj
 
 SRC						= main.c \
 							args/args_check.c \
+							canvas/canvas_clear.c \
+							canvas/canvas_destroy.c \
+							canvas/canvas_draw.c \
+							canvas/canvas_setpx.c \
 							lifecycle/cub_init.c \
 							lifecycle/cub_load.c \
 							lifecycle/cub_run.c \
