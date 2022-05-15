@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 13:02:32 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:27:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,7 @@
 static void	_move_player_x(t_player *player, int factor);
 static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
-
-void	factors_add(struct s_factors const *src, struct s_factors *dest)
-{
-	dest->x += src->x;
-	dest->y += src->y;
-	dest->yaw += src->yaw;
-}
+static void	factors_add(struct s_factors const *src, struct s_factors *dest);
 
 int	loop_handle(t_cub *cub)
 {
@@ -69,4 +63,11 @@ static void	_move_player_y(t_player *player, int factor)
 static void	_move_player_yaw(t_player *player, int factor)
 {
 	player->yaw = fmodf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
+}
+
+static void	factors_add(struct s_factors const *src, struct s_factors *dest)
+{
+	dest->x += src->x;
+	dest->y += src->y;
+	dest->yaw += src->yaw;
 }

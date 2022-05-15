@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:13:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 13:10:37 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:27:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ static struct s_input const	g_inputs[] = {
 {.key = XK_Right, .action.factors = {0, 0, 1}, .action.mask = INPUT_CAM_RIGHT},
 };
 
-void					factors_add(struct s_factors const *src,
-							struct s_factors *dest);
 struct s_input const	*get_input(int key);
 
 #endif
