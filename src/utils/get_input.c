@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:19:52 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 19:25:11 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:13:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include <X11/keysym.h>
 
 static struct s_input const	g_inputs[] = {
-{XK_w, NO_EXIT, {0, -1, 0}},
-{XK_s, NO_EXIT, {0, 1, 0}},
-{XK_a, NO_EXIT, {-1, 0, 0}},
-{XK_d, NO_EXIT, {1, 0, 0}},
-{XK_Left, NO_EXIT, {0, 0, -1}},
-{XK_Right, NO_EXIT, {0, 0, 1}},
-{XK_Escape, EXIT, {0, 0, 0}},
+{.key = XK_w, .action.factors = {0, -1, 0}},
+{.key = XK_s, .action.factors = {0, 1, 0}},
+{.key = XK_a, .action.factors = {-1, 0, 0}},
+{.key = XK_d, .action.factors = {1, 0, 0}},
+{.key = XK_Left, .action.factors = {0, 0, -1}},
+{.key = XK_Right, .action.factors = {0, 0, 1}},
+{.key = XK_Escape, .action.exits = EXIT},
 };
 
 struct s_input const	*get_input(int key)
