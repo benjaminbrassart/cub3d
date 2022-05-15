@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_release_handle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 17:35:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/15 12:41:17 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 12:41:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
 #include "cub.h"
-#include "def.h"
-#include "lifecycle.h"
+#include "input.h"
+#include "mlx_handle.h"
 
-#include <stdlib.h>
+#include "mlx.h"
 
-int	main(int argc, char const *argv[])
+#include <stddef.h>
+
+int	key_release_handle(int key, t_cub *cub)
 {
-	t_cub	cub;
-	int		res;
+	struct s_input const	*input = get_input(key);
 
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	res = RES_FAILURE;
-	cub.map_file.path = argv[1];
-	if (cub_init(&cub))
-		res = (cub_load(&cub) && cub_run(&cub));
-	cub_destroy(&cub);
-	if (res == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (input == NULL)
+		return (0);
+	cub->player.input_mask &= ~input->action.mask;
+	return (0);
 }
