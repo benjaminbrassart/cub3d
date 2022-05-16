@@ -1,0 +1,5 @@
+/* XPM */
+static char * black_xpm[] = {
+"1 1 1 1",
+" 	c #0B0B0B",
+" "};

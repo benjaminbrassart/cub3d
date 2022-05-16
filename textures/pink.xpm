@@ -1,0 +1,5 @@
+/* XPM */
+static char * pink_xpm[] = {
+"1 1 1 1",
+" 	c #FF00C3",
+" "};
