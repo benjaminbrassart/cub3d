@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/15 18:42:39 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/16 14:55:27 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,9 @@ SRC						= main.c \
 							canvas/canvas_clear.c \
 							canvas/canvas_destroy.c \
 							canvas/canvas_draw.c \
+							canvas/canvas_draw_shape.c \
 							canvas/canvas_setpx.c \
+							canvas/draw/draw_rect.c \
 							lifecycle/cub_init.c \
 							lifecycle/cub_load.c \
 							lifecycle/cub_run.c \
@@ -67,6 +69,7 @@ SRC						= main.c \
 							mlx_handler/destroy_handle.c \
 							utils/print_error.c \
 							utils/get_input.c \
+							utils/ft_modf.c \
 							utils/rgb.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)

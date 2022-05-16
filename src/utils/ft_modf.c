@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas_draw_shape.c                                :+:      :+:    :+:   */
+/*   ft_modf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 20:03:36 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 11:26:42 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/16 14:54:01 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/16 14:55:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
+#include "utils.h"
 
-#include <stddef.h>
+#include <math.h>
 
-void	canvas_draw_shape(t_canvas *canvas, t_shape_draw_fn *fn,
-	t_shape const *shape, uint32_t color)
+float	ft_modf(float x, float y)
 {
-	if (canvas != NULL && fn != NULL && shape != NULL)
-		fn(canvas, shape, color);
+	float const	res = fmodf(x, y);
+
+	if (res < 0)
+		return (res + y);
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 17:12:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:09:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # define WIN_HEIGHT		300
 # define WIN_TITLE		"CUB3D"
 
-# define MOVEMENT_SPEED	0.02f
+# define MOVEMENT_SPEED	0.5f
+# define SPRINT_SPEED	5.0f
 // RADIANS
-# define CAMERA_SPEED	0.1f
+# define CAMERA_SPEED	0.05f
 
 #endif

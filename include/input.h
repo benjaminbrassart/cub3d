@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:13:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 16:27:50 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:07:45 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define INPUT_RIGHT		INPUT_RIGHT
 # define INPUT_CAM_LEFT		INPUT_CAM_LEFT
 # define INPUT_CAM_RIGHT	INPUT_CAM_RIGHT
+# define INPUT_SPRINT		INPUT_SPRINT
 
 # include <X11/keysym.h>
 
@@ -35,6 +36,7 @@ enum e_input_mask
 	INPUT_RIGHT		= (1 << 4),
 	INPUT_CAM_LEFT	= (1 << 5),
 	INPUT_CAM_RIGHT	= (1 << 6),
+	INPUT_SPRINT	= (1 << 7),
 };
 
 struct s_factors
@@ -62,6 +64,7 @@ static struct s_input const	g_inputs[] = {
 {.key = XK_d, .action.factors = {1, 0, 0}, .action.mask = INPUT_RIGHT},
 {.key = XK_Left, .action.factors = {0, 0, -1}, .action.mask = INPUT_CAM_LEFT},
 {.key = XK_Right, .action.factors = {0, 0, 1}, .action.mask = INPUT_CAM_RIGHT},
+{.key = XK_Shift_L, .action.mask = INPUT_SPRINT},
 };
 
 struct s_input const	*get_input(int key);

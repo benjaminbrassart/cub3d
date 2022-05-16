@@ -6,26 +6,15 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 19:33:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:50:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 
+#include "ft.h"
+
 void	canvas_clear(t_canvas *canvas)
 {
-	unsigned int	x;
-	unsigned int	y;
-
-	y = 0;
-	while (y < canvas->height)
-	{
-		x = 0;
-		while (x < canvas->width)
-		{
-			canvas_unsafe_setpx(canvas, x, y, 0xFF000000);
-			++x;
-		}
-		++y;
-	}
+	ft_memset(canvas->raw, 0, canvas->height * canvas->width * (canvas->bpp / 8));
 }
