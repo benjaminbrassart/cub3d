@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:28:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:15:06 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "ft.h"
 
+//! FIXME have a length array for each line in map to avoid
+//! calculation of ft_strlen(map[y])
 static bool	_check_found(t_ray const *ray)
 {
 	return (ray->check.y >= 0 && ray->check.y < MAP_HEIGHT
@@ -25,6 +27,7 @@ static bool	_check_found(t_ray const *ray)
 		&& g_map[ray->check.y][ray->check.x] == '1');
 }
 
+// TODO norminette
 bool	ray_cast(t_ray *ray, float *distance, float *x, float *y)
 {
 	bool	tile_found;
