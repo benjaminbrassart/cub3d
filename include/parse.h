@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxime <maxime@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 15:15:19 by msainton          #+#    #+#             */
-/*   Updated: 2022/05/15 01:18:48 by maxime           ###   ########.fr       */
+/*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
+/*   Updated: 2022/05/14 18:05:13 by maxime           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "def.h"
+#ifndef PARSE_H
+# define PARSE_H
 
-#include <unistd.h>
-
-
-void	check_line(char *line)
+typedef struct s_map
 {
-	
-}
+	char	*my_map;
+	int		fd;
+}	t_map;
 
-int	check_map(int fd)
-{
-	char	*line;
-	int		res;
-	
-	while (1)
-	{
-		res = get_next_line(fd, &line);
-		if (res <= 0)
-			break ;
-		check_line(line);
-	}
-	
-}
+int		check_map(int fd);
+
+#endif
