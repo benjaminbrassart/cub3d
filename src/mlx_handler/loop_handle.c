@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 19:56:43 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 21:15:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "cub.h"
 #include "input.h"
 #include "mlx_handle.h"
+#include "ray.h"
 #include "utils.h"
 
 #include "ft.h"
@@ -30,6 +31,52 @@ static void	_move_player_x(t_player *player, int factor);
 static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
 static void	factors_add(struct s_factors const *src, struct s_factors *dest);
+
+static void	_draw_hit(t_cub *cub)
+{
+	t_ray	ray;
+	bool	tile_found;
+	float	distance;
+	t_shape	shape;
+
+	ray_init(&ray, &cub->player);
+	tile_found = false;
+	distance = 0.0f;
+	while (!tile_found && distance < RENDER_DISTANCE)
+	{
+		if (ray.length.x < ray.length.y)
+		{
+			ray.check.x += ray.step.x;
+			distance = ray.length.x;
+			ray.length.x += ray.unit.x;
+		}
+		else
+		{
+			ray.check.y += ray.step.y;
+			distance = ray.length.y;
+			ray.length.y += ray.unit.y;
+		}
+		tile_found = (ray.check.y >= 0 && ray.check.y < MAP_HEIGHT
+				&& ray.check.x >= 0 && (unsigned int)ray.check.x < ft_strlen(g_map[ray.check.y]))
+				&& g_map[ray.check.y][ray.check.x] == '1';
+	}
+	if (tile_found)
+	{
+		shape.circle = (struct s_circle){
+			.x = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+			.y = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+			.radius = 12,
+		};
+		canvas_draw_shape(&cub->screen, draw_circle, &shape, 0xFFFFFF00);
+		shape.circle.radius = 4;
+		canvas_draw_shape(&cub->screen, fill_circle, &shape, 0xFFFFFF00);
+		shape.line = (struct s_line){
+			.x1 = ray.start.x * (MM_TILE_SIZE + 1), .x2 = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+			.y1 = ray.start.y * (MM_TILE_SIZE + 1), .y2 = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+		};
+		canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
+	}
+}
 
 static void	_draw_map(t_cub *cub)
 {
@@ -128,6 +175,7 @@ int	loop_handle(t_cub *cub)
 	canvas_clear(&cub->screen);
 	_draw_map(cub);
 	_draw_player(cub);
+	_draw_hit(cub);
 	return (0);
 }
 

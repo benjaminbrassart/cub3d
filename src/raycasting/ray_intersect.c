@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config.h                                           :+:      :+:    :+:   */
+/*   ray_intersect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:08:12 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/16 20:24:08 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/16 20:25:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONFIG_H
-# define CONFIG_H
+#include "ray.h"
 
-# define WIN_WIDTH			2000
-# define WIN_HEIGHT			1000
-# define WIN_TITLE			"CUB3D"
-
-# define MM_TILE_SIZE		64
-
-# define MOVEMENT_SPEED		0.04f
-# define SPRINT_SPEED		5.0f
-// RADIANS
-# define CAMERA_SPEED		0.08f
-
-# define RENDER_DISTANCE	100.0f
-
-#endif
+void	ray_intersect(t_ray const *ray, float distance, t_vf2 *intersect)
+{
+	intersect->x = ray->start.x + ray->dir.x * distance;
+	intersect->y = ray->start.y + ray->dir.y * distance;
+}

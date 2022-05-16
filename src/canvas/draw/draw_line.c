@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:03:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 17:56:42 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 21:15:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,5 @@ void	draw_line(t_canvas *canvas, t_shape const *shape, uint32_t color)
 {
 	struct s_line	line = shape->line;
 
-
-	if (line.x1 > line.x2)
-		swapi(&line.x1, &line.x2);
-	if (line.y1 > line.y2)
-		swapi(&line.y1, &line.y2);
 	_draw_line_dda(canvas, &line, color);
 }
