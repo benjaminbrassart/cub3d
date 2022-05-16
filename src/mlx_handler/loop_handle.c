@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:15:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:12:35 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,46 +35,29 @@ static void	factors_add(struct s_factors const *src, struct s_factors *dest);
 static void	_draw_hit(t_cub *cub)
 {
 	t_ray	ray;
-	bool	tile_found;
 	float	distance;
 	t_shape	shape;
+	t_vf2	pos;
 
-	ray_init(&ray, &cub->player);
-	tile_found = false;
-	distance = 0.0f;
-	while (!tile_found && distance < RENDER_DISTANCE)
+	for (float i = -75; i <= 75; ++i)
 	{
-		if (ray.length.x < ray.length.y)
+		ray_init(&ray, &cub->player, cub->player.yaw + (i / 100.0));
+		if (ray_cast(&ray, &distance, &pos.x, &pos.y))
 		{
-			ray.check.x += ray.step.x;
-			distance = ray.length.x;
-			ray.length.x += ray.unit.x;
+			shape.circle = (struct s_circle){
+				.x = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+				.y = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+				.radius = 12,
+			};
+			canvas_draw_shape(&cub->screen, draw_circle, &shape, 0xFFFFFF00);
+			shape.circle.radius = 4;
+			canvas_draw_shape(&cub->screen, fill_circle, &shape, 0xFFFFFF00);
+			shape.line = (struct s_line){
+				.x1 = ray.start.x * (MM_TILE_SIZE + 1), .x2 = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+				.y1 = ray.start.y * (MM_TILE_SIZE + 1), .y2 = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+			};
+			canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
 		}
-		else
-		{
-			ray.check.y += ray.step.y;
-			distance = ray.length.y;
-			ray.length.y += ray.unit.y;
-		}
-		tile_found = (ray.check.y >= 0 && ray.check.y < MAP_HEIGHT
-				&& ray.check.x >= 0 && (unsigned int)ray.check.x < ft_strlen(g_map[ray.check.y]))
-				&& g_map[ray.check.y][ray.check.x] == '1';
-	}
-	if (tile_found)
-	{
-		shape.circle = (struct s_circle){
-			.x = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
-			.y = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
-			.radius = 12,
-		};
-		canvas_draw_shape(&cub->screen, draw_circle, &shape, 0xFFFFFF00);
-		shape.circle.radius = 4;
-		canvas_draw_shape(&cub->screen, fill_circle, &shape, 0xFFFFFF00);
-		shape.line = (struct s_line){
-			.x1 = ray.start.x * (MM_TILE_SIZE + 1), .x2 = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
-			.y1 = ray.start.y * (MM_TILE_SIZE + 1), .y2 = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
-		};
-		canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
 	}
 }
 
@@ -174,8 +157,8 @@ int	loop_handle(t_cub *cub)
 	_move_player_y(&cub->player, factors.y * multiplier);
 	canvas_clear(&cub->screen);
 	_draw_map(cub);
-	_draw_player(cub);
 	_draw_hit(cub);
+	_draw_player(cub);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 20:02:20 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 20:31:47 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 21:56:41 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	_compute_step(t_ray *ray)
 	}
 }
 
-void	ray_init(t_ray *ray, t_player const *player)
+void	ray_init(t_ray *ray, t_player const *player, float yaw)
 {
 	ray->start.x = player->x;
 	ray->start.y = player->y;
-	ray->dir.x = cos(player->yaw);
-	ray->dir.y = sin(player->yaw);
+	ray->dir.x = cos(yaw);
+	ray->dir.y = sin(yaw);
 	ray->unit.x = sqrt(1 + pow(ray->dir.y / ray->dir.x, 2));
 	ray->unit.y = sqrt(1 + pow(ray->dir.x / ray->dir.y, 2));
 	ray->check.x = (int)ray->start.x;

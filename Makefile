@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/16 20:28:09 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/16 21:27:09 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC						= main.c \
 							mlx_handler/destroy_handle.c \
 							raycasting/ray_init.c \
 							raycasting/ray_intersect.c \
+							raycasting/ray_cast.c \
 							utils/print_error.c \
 							utils/get_input.c \
 							utils/ft_modf.c \
