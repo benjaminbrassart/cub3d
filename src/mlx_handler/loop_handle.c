@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 22:12:35 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:16:30 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,8 +184,6 @@ static void	_move_player_y(t_player *player, int factor)
 static void	_move_player_yaw(t_player *player, int factor)
 {
 	player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
-	// printf("angle: %f %f deg\n", player->yaw, player->yaw * (180 / M_PI));
-	printf("position: %f - %f\n", player->x, player->y);
 }
 
 static void	factors_add(struct s_factors const *src, struct s_factors *dest)
