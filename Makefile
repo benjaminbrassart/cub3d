@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/16 14:55:27 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/16 15:21:11 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ DIR_MLX					= minilibx-linux
 NAME_LIBFT				= $(DIR_LIBFT)/libft.a
 NAME_MLX				= $(DIR_MLX)/libmlx.a
 
-NAME_LIBS				= $(NAME_LIBFT) $(NAME_MLX)
+NAME_LIBS				+= $(NAME_LIBFT)
+NAME_LIBS				+= $(NAME_MLX)
 
 CC						= cc
 CFLAGS					+= -Wall
@@ -32,6 +33,7 @@ CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
 
+# TODO remove when deploying
 DEBUG					= true
 
 ifeq ($(DEBUG), true)
@@ -43,6 +45,7 @@ LDLIBS					+= -lmlx
 LDLIBS					+= -lm
 LDLIBS					+= -lXext
 LDLIBS					+= -lX11
+
 LDFLAGS					+= -L$(DIR_LIBFT)
 LDFLAGS					+= -L$(DIR_MLX)
 
@@ -79,7 +82,6 @@ $(NAME):				$(NAME_LIBS) $(OBJ)
 						@$(CC) $(filter %.o,$^) -o $@ $(LDFLAGS) $(LDLIBS)
 
 $(NAME_LIBS):			.FORCE
-						@echo Compiling $(@F)
 						@$(MAKE) -C $(@D)
 
 $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
@@ -96,6 +98,8 @@ clean:
 
 fclean:					clean
 						$(RM) $(NAME)
+						$(MAKE) -C $(DIR_LIBFT) fclean
+						$(MAKE) -C $(DIR_MLX) clean
 
 re:						fclean all
 
