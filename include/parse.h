@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/16 12:13:22 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:12:29 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 
 typedef struct s_param
 {
-	char	*direction;
-	char	*img;
+	char	*textures[4];
 }	t_param;
 
 typedef struct s_map
 {
 	char	*elem;
 	char	*img;
-	int		(*func)(char *line, t_param *param);
+	int		(*func)(char *line, t_param *param, struct s_map *map);
+	int		index;
 }	t_map;
 
 
 static t_map const	g_map[] = {
-{"NO", path_to_the_north_texture, texture},
-{"SO", path_to_the_south_texture, texture},
-{"WE", path_to_the_west_texture, texture},
-{"EA", path_to_the_east_texture, texture},
-{"F", RGB, color},
-{"C", RGB, color},
+{"NO", texture, 0},
+{"SO", texture, 1},
+{"WE", texture, 2},
+{"EA", texture, 3},
+{"F", color, 0},
+{"C", color, 1},
+{NULL, NULL, NULL},
 };
 
 int		check_map(int fd);
