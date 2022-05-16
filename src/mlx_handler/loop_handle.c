@@ -6,9 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 15:14:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 19:56:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "removeme.h" //! remove
 
 #include "config.h"
 
@@ -29,22 +31,68 @@ static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
 static void	factors_add(struct s_factors const *src, struct s_factors *dest);
 
+static void	_draw_map(t_cub *cub)
+{
+	int			x;
+	int			y;
+	uint32_t	color;
+	t_shape		shape;
+
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (g_map[y][x])
+		{
+			switch (g_map[y][x])
+			{
+				case '0':
+					color = 0xFFFF00FF; break;
+				case '1':
+					color = 0xFF888888; break;
+				case 'W':
+				case 'E':
+				case 'N':
+				case 'S':
+					color = 0xFFFFFFFF; break;
+				default:
+					color = 0xFF888888; break;
+			}
+			shape.rectangle.x1 = x * (MM_TILE_SIZE + 1);
+			shape.rectangle.x2 = x * (MM_TILE_SIZE + 1) + MM_TILE_SIZE;
+			shape.rectangle.y1 = y * (MM_TILE_SIZE + 1);
+			shape.rectangle.y2 = y * (MM_TILE_SIZE + 1) + MM_TILE_SIZE;
+			canvas_draw_shape(&cub->screen, draw_rect, &shape, color);
+			++x;
+		}
+		++y;
+	}
+}
+
 static void	_draw_player(t_cub *cub)
 {
-	t_shape const	shape = {.rectangle = {
-		cub->player.x - 10, cub->player.x + 10,
-		cub->player.y - 10, cub->player.y + 10,
+	t_shape const	player_circle = {.circle = {
+		cub->player.x * (MM_TILE_SIZE + 1),
+		cub->player.y * (MM_TILE_SIZE + 1),
+		(MM_TILE_SIZE / 4)
 	}};
-	t_shape const	dirpt = {.rectangle = {
-		cos(cub->player.yaw) * 40 + cub->player.x - 5,
-		cos(cub->player.yaw) * 40 + cub->player.x + 5,
-		sin(cub->player.yaw) * 40 + cub->player.y - 5,
-		sin(cub->player.yaw) * 40 + cub->player.y + 5,
+	// t_shape const	shape = {.rectangle = {
+	// 	cub->player.x * (MM_TILE_SIZE + 1) - (MM_TILE_SIZE / 4), cub->player.x * (MM_TILE_SIZE + 1) + (MM_TILE_SIZE / 4),
+	// 	cub->player.y * (MM_TILE_SIZE + 1) - (MM_TILE_SIZE / 4), cub->player.y * (MM_TILE_SIZE + 1) + (MM_TILE_SIZE / 4),
+	// }};
+	// t_shape const	dirpt = {.line = {
+	// 	cos(cub->player.yaw) * 40 + (cub->player.x * (MM_TILE_SIZE + 1)) - 5,
+	// 	cos(cub->player.yaw) * 40 + (cub->player.x * (MM_TILE_SIZE + 1)) + 5,
+	// 	sin(cub->player.yaw) * 40 + (cub->player.y * (MM_TILE_SIZE + 1)) - 5,
+	// 	sin(cub->player.yaw) * 40 + (cub->player.y * (MM_TILE_SIZE + 1)) + 5,
+	// }};
+	t_shape const	dirln = {.line = {
+		cub->player.x * (MM_TILE_SIZE + 1), cos(cub->player.yaw) * 40 + (cub->player.x * (MM_TILE_SIZE + 1)),
+		cub->player.y * (MM_TILE_SIZE + 1), sin(cub->player.yaw) * 40 + (cub->player.y * (MM_TILE_SIZE + 1)),
 	}};
 
-	canvas_clear(&cub->screen);
-	canvas_draw_shape(&cub->screen, draw_rect, &shape, 0xFF00FF00);
-	canvas_draw_shape(&cub->screen, draw_rect, &dirpt, 0xFFFFFFFF);
+	canvas_draw_shape(&cub->screen, fill_circle, &player_circle, 0xFF00FF00);
+	canvas_draw_shape(&cub->screen, draw_line, &dirln, 0xFFFFFFFF);
 }
 
 int	loop_handle(t_cub *cub)
@@ -77,6 +125,8 @@ int	loop_handle(t_cub *cub)
 	_move_player_yaw(&cub->player, factors.yaw);
 	_move_player_x(&cub->player, factors.x * multiplier);
 	_move_player_y(&cub->player, factors.y * multiplier);
+	canvas_clear(&cub->screen);
+	_draw_map(cub);
 	_draw_player(cub);
 	return (0);
 }
@@ -103,7 +153,8 @@ static void	_move_player_y(t_player *player, int factor)
 static void	_move_player_yaw(t_player *player, int factor)
 {
 	player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
-	printf("angle: %f %f deg\n", player->yaw, player->yaw * (180 / M_PI));
+	// printf("angle: %f %f deg\n", player->yaw, player->yaw * (180 / M_PI));
+	printf("position: %f - %f\n", player->x, player->y);
 }
 
 static void	factors_add(struct s_factors const *src, struct s_factors *dest)

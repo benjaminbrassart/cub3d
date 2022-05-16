@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 17:35:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:07:07 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "cub.h"
 #include "def.h"
 #include "lifecycle.h"
+
+#include "ft.h"
 
 #include <stdlib.h>
 
@@ -24,6 +26,7 @@ int	main(int argc, char const *argv[])
 
 	if (args_check(argc, argv) == RES_FAILURE)
 		return (EXIT_FAILURE);
+	ft_memset(&cub, 0, sizeof (cub));
 	res = RES_FAILURE;
 	cub.map_file.path = argv[1];
 	if (cub_init(&cub))
