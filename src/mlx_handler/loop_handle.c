@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 22:16:30 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:04:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 static void	_move_player_x(t_player *player, int factor);
 static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
-static void	factors_add(struct s_factors const *src, struct s_factors *dest);
+static void	_factors_add(struct s_factors const *src, struct s_factors *dest);
 
 static void	_draw_hit(t_cub *cub)
 {
@@ -39,7 +39,7 @@ static void	_draw_hit(t_cub *cub)
 	t_shape	shape;
 	t_vf2	pos;
 
-	for (float i = -75; i <= 75; ++i)
+	for (float i = -50; i <= 50; ++i)
 	{
 		ray_init(&ray, &cub->player, cub->player.yaw + (i / 100.0));
 		if (ray_cast(&ray, &distance, &pos.x, &pos.y))
@@ -148,7 +148,7 @@ int	loop_handle(t_cub *cub)
 			if (g_inputs[n].action.mask & INPUT_SPRINT)
 				multiplier = SPRINT_SPEED;
 			else
-				factors_add(&g_inputs[n].action.factors, &factors);
+				_factors_add(&g_inputs[n].action.factors, &factors);
 		}
 		++n;
 	}
@@ -157,58 +157,59 @@ int	loop_handle(t_cub *cub)
 	_move_player_y(&cub->player, factors.y * multiplier);
 	canvas_clear(&cub->screen);
 	_draw_map(cub);
-	_draw_hit(cub);
+	// _draw_hit(cub);
+	(void)_draw_hit;
 	_draw_player(cub);
 	return (0);
 }
 
+static bool	_check_collision(float x, float y, int factor)
+{
+	int const xi = round(x + (0.5 * factor));
+	int const yi = round(y + (0.5 * factor));
+
+	return ((yi >= 0 && yi < MAP_HEIGHT && xi >= 0
+			&& (unsigned int)xi < ft_strlen(g_map[yi]) & g_map[yi][xi] != '1'));
+}
+
 static void	_move_player_x(t_player *player, int factor)
 {
-	(void)player;
-	(void)factor;
-	// player->x += MOVEMENT_SPEED * factor * cos(player->yaw + factor * M_PI_2);
-	// player->y -= MOVEMENT_SPEED * factor * sin(player->yaw + factor * M_PI_2);
-	// player->x += factor * MOVEMENT_SPEED;
+	float	x;
+	float	y;
+
+	if (factor == 0)
+		return ;
+	x = player->x + factor * MOVEMENT_SPEED * cos(player->yaw + M_PI / 2);
+	if (_check_collision(x, player->y, factor))
+		player->x = x;
+	y = player->y + factor * MOVEMENT_SPEED * sin(player->yaw + M_PI / 2);
+	if (_check_collision(player->x, y, factor))
+		player->y = y;
 }
 
 static void	_move_player_y(t_player *player, int factor)
 {
+	float	x;
+	float	y;
+
 	if (factor == 0)
 		return ;
-	player->x += factor * MOVEMENT_SPEED * cos(player->yaw + M_PI);
-	player->y += factor * MOVEMENT_SPEED * sin(player->yaw + M_PI);
+	x = player->x + factor * MOVEMENT_SPEED * cos(player->yaw + M_PI);
+	if (_check_collision(x, player->y, factor))
+		player->x = x;
+	y = player->y + factor * MOVEMENT_SPEED * sin(player->yaw + M_PI);
+	if (_check_collision(player->x, y, factor))
+		player->y = y;
 }
-
-#include <stdio.h>
 
 static void	_move_player_yaw(t_player *player, int factor)
 {
 	player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
 }
 
-static void	factors_add(struct s_factors const *src, struct s_factors *dest)
+static void	_factors_add(struct s_factors const *src, struct s_factors *dest)
 {
 	dest->x += src->x;
 	dest->y += src->y;
 	dest->yaw += src->yaw;
 }
-
-// struct s
-// {
-// 	int	i;
-// 	void	*z;
-// 	void (*fct)(int, struct s *ptr, t_cub *);
-// };
-
-// void	_hello_world(int a, struct s *ptr, t_cub *cub)
-// {
-// 	ptr->fct(a, ptr, cub);
-// }
-
-// void	a(t_cub *cub)
-// {
-// 	struct s p;
-
-// 	p.fct = _hello_world;
-// 	p.fct(10, &p, cub);
-// }
