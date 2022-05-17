@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:37:07 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 18:38:52 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:45:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,6 @@ static void	_draw_player(t_cub *cub)
 	canvas_draw_shape(&cub->screen, draw_line, &dirln, 0xFFFFFFFF);
 }
 
-static void	_remove_fisheye_effect(t_player const *player, t_ray const *ray,
-	float *distance)
-{
-	float	base_angle;
-
-	base_angle = ft_modf(player->yaw - ray->angle, 2 * M_PI);
-	*distance *= cos(base_angle);
-}
-
 static void	_draw_projection(t_cub *cub)
 {
 	t_ray	ray;
@@ -137,9 +128,7 @@ static void	_draw_projection(t_cub *cub)
 		ray_init(&ray, &cub->player, cub->player.yaw + (i / WIN_WIDTH));
 		if (ray_cast(&ray, &distance, NULL, NULL))
 		{
-			if (distance < 1.0f)
-				distance = 1.0f;
-			_remove_fisheye_effect(&cub->player, &ray, &distance);
+			distance *= cos(cub->player.yaw - ray.angle);
 			height = MAP_HEIGHT / distance;
 			offset = (MAP_HEIGHT / 2.0f) - height / 2.0f;
 			shape.line = (struct s_line){
