@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/16 21:27:09 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/17 16:38:07 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC						= main.c \
 							lifecycle/cub_init.c \
 							lifecycle/cub_load.c \
 							lifecycle/cub_run.c \
+							lifecycle/cub_update.c \
 							lifecycle/cub_destroy.c \
 							mlx_handler/loop_handle.c \
 							mlx_handler/key_press_handle.c \
