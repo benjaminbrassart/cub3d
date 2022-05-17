@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:37:07 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:43:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:29:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,36 @@
 #include "ray.h"
 
 #include <math.h>
+#include <stddef.h>
 
-static void	_draw_hit(t_cub *cub)
-{
-	t_ray	ray;
-	float	distance;
-	t_shape	shape;
-	t_vf2	pos;
+// static void	_draw_hit(t_cub *cub)
+// {
+// 	t_ray	ray;
+// 	float	distance;
+// 	t_shape	shape;
+// 	t_vf2	pos;
 
-	for (float i = -50; i <= 50; ++i)
-	{
-		ray_init(&ray, &cub->player, cub->player.yaw + (i / 100.0));
-		if (ray_cast(&ray, &distance, &pos.x, &pos.y))
-		{
-			shape.circle = (struct s_circle){
-				.x = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
-				.y = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
-				.radius = 12,
-			};
-			canvas_draw_shape(&cub->screen, draw_circle, &shape, 0xFFFFFF00);
-			shape.circle.radius = 4;
-			canvas_draw_shape(&cub->screen, fill_circle, &shape, 0xFFFFFF00);
-			shape.line = (struct s_line){
-				.x1 = ray.start.x * (MM_TILE_SIZE + 1), .x2 = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
-				.y1 = ray.start.y * (MM_TILE_SIZE + 1), .y2 = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
-			};
-			canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
-		}
-	}
-}
+// 	for (float i = -50; i <= 50; ++i)
+// 	{
+// 		ray_init(&ray, &cub->player, cub->player.yaw);
+// 		if (ray_cast(&ray, &distance, &pos.x, &pos.y))
+// 		{
+// 			shape.circle = (struct s_circle){
+// 				.x = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+// 				.y = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+// 				.radius = 5,
+// 			};
+// 			canvas_draw_shape(&cub->screen, fill_circle, &shape, 0xFFFFFF00);
+// 			shape.line = (struct s_line){
+// 				.x1 = ray.start.x * (MM_TILE_SIZE + 1),
+// 				.x2 = (ray.start.x + ray.dir.x * distance) * (MM_TILE_SIZE + 1),
+// 				.y1 = ray.start.y * (MM_TILE_SIZE + 1),
+// 				.y2 = (ray.start.y + ray.dir.y * distance) * (MM_TILE_SIZE + 1),
+// 			};
+// 			canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
+// 		}
+// 	}
+// }
 
 static void	_draw_map(t_cub *cub)
 {
@@ -113,11 +114,37 @@ static void	_draw_player(t_cub *cub)
 	canvas_draw_shape(&cub->screen, draw_line, &dirln, 0xFFFFFFFF);
 }
 
+static void	_draw_projection(t_cub *cub)
+{
+	t_ray	ray;
+	float	distance;
+	t_shape	shape;
+	float	height;
+	float	offset;
+
+	for (float i = -WIN_WIDTH / 2; i <= WIN_WIDTH / 2; ++i)
+	{
+		ray_init(&ray, &cub->player, cub->player.yaw + (i / WIN_WIDTH));
+		if (ray_cast(&ray, &distance, NULL, NULL))
+		{
+			if (distance < 1.0f)
+				distance = 1.0f;
+			height = MAP_HEIGHT / distance;
+			offset = (MAP_HEIGHT / 2.0f) - height / 2.0f;
+			shape.line = (struct s_line){
+				i + (WIN_WIDTH / 2), i + (WIN_WIDTH / 2),
+				MM_TILE_SIZE * offset, MM_TILE_SIZE * (height + offset),
+			};
+			canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
+		}
+	}
+}
+
 void	cub_update(t_cub *cub)
 {
 	canvas_clear(&cub->screen);
 	_draw_map(cub);
 	// _draw_hit(cub);
-	(void)_draw_hit;
 	_draw_player(cub);
+	_draw_projection(cub);
 }
