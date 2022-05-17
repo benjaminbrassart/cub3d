@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:50:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:30:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ static void	_move_player_y(t_player *player, int factor)
 
 static void	_move_player_yaw(t_player *player, int factor)
 {
-	player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
+	if (factor != 0)
+		player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
 }
 
 static void	_factors_add(struct s_factors const *src, struct s_factors *dest)
