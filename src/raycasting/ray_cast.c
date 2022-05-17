@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 15:25:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:49:48 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,25 @@ static bool	_check_found(t_ray const *ray)
 		&& g_map[ray->check.y][ray->check.x] == '1');
 }
 
-// TODO norminette
+static float	_compute_new_distance(t_ray *ray)
+{
+	float	dist;
+
+	if (ray->length.x < ray->length.y)
+	{
+		ray->check.x += ray->step.x;
+		dist = ray->length.x;
+		ray->length.x += ray->unit.x;
+	}
+	else
+	{
+		ray->check.y += ray->step.y;
+		dist = ray->length.y;
+		ray->length.y += ray->unit.y;
+	}
+	return (dist);
+}
+
 bool	ray_cast(t_ray *ray, float *distance, float *x, float *y)
 {
 	bool	tile_found;
@@ -37,18 +55,7 @@ bool	ray_cast(t_ray *ray, float *distance, float *x, float *y)
 	tile_found = false;
 	while (!tile_found && dist < RENDER_DISTANCE)
 	{
-		if (ray->length.x < ray->length.y)
-		{
-			ray->check.x += ray->step.x;
-			dist = ray->length.x;
-			ray->length.x += ray->unit.x;
-		}
-		else
-		{
-			ray->check.y += ray->step.y;
-			dist = ray->length.y;
-			ray->length.y += ray->unit.y;
-		}
+		dist = _compute_new_distance(ray);
 		tile_found = _check_found(ray);
 	}
 	if (tile_found)

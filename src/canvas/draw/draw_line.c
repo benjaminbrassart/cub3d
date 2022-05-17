@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:03:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:15:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:45:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	_draw_line_dda(t_canvas *canvas, struct s_line const *line,
 
 void	draw_line(t_canvas *canvas, t_shape const *shape, uint32_t color)
 {
-	struct s_line	line = shape->line;
+	struct s_line const	line = shape->line;
 
 	_draw_line_dda(canvas, &line, color);
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 13:15:35 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:46:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	cub_init(t_cub *cub)
 	int	res;
 
 	ft_memset(&cub->player, 0, sizeof (cub->player));
-	cub->player.x = 20; // TODO remove
-	cub->player.y = 20; // TODO remove
 	res = (_init_display(cub) && _init_window(cub) && _init_screen(cub));
 	if (res != RES_FAILURE)
 		_setup_handlers(cub);

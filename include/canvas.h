@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:38:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 11:24:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:46:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdint.h>
 
 typedef union u_shape	t_shape;
-typedef void			(t_shape_draw_fn)(t_canvas *, t_shape const *, uint32_t);
+typedef void			(t_shape_draw_fn)(t_canvas *, t_shape const *,
+							uint32_t);
 
 struct s_rect
 {
