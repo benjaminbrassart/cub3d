@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 22:15:06 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:25:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ bool	ray_cast(t_ray *ray, float *distance, float *x, float *y)
 	}
 	if (tile_found)
 	{
-		*x = ray->start.x + ray->dir.x * dist;
-		*y = ray->start.y + ray->dir.y * dist;
-		*distance = dist;
+		if (x != NULL)
+			*x = ray->start.x + ray->dir.x * dist;
+		if (y != NULL)
+			*y = ray->start.y + ray->dir.y * dist;
+		if (distance != NULL)
+			*distance = dist;
 	}
 	return (tile_found);
 }
