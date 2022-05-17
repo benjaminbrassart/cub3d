@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:15:19 by msainton          #+#    #+#             */
-/*   Updated: 2022/05/16 16:18:44 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:39:35 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	texture(char *line, t_param *param, struct s_map *map)
 	char	*tmp2;
 
 	i = 0;
-	while (line[i] && custom_isspace(line[i]) == 0)
+	while (line[i] && custom_isspace(line[i]) != 0)
 		i++;
 	j = 0;
-	while (line[i] && custom_isspace(line[i]) == 1)
+	while (line[i] && custom_isspace(line[i]) == 0)
 	{
 		tmp[j] == line[i];
 		i++;
@@ -46,13 +46,73 @@ int	texture(char *line, t_param *param, struct s_map *map)
 	}
 	if (g_map[j] == NULL)
 		return (0);
-	while (line[i] && custom_isspace(line[i]) == 0)
+	while (line[i] && custom_isspace(line[i]) != 0)
 		i++;
 	j = 0;
 	while (line[i])
 		tmp2[j++] = line[i++];
 	param->textures[map->index] = tmp2;
 	return (1);
+}
+
+int	parse_rgb(char *str, t_param *param, struct s_map *map)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	*tmp;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[i])
+	{
+		while (str[i] >= '0' && str[i] <= '9')
+			tmp[k++] = str[i++];
+		if (str[i] == ',')
+		{
+			i++;
+			param->rgb[map->index + j] = ft_atoi(tmp);
+			j++;
+		}
+		else
+			break;
+	}
+}
+
+int	color(char *line, t_param *param, struct s_map *map)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+	char	*tmp2;
+
+	i = 0;
+	while (line[i] && custom_isspace(line[i]) != 0)
+		i++;
+	j = 0;
+	while (line[i] && custom_isspace(line[i]) == 0)
+	{
+		tmp[j] == line[i];
+		i++;
+	}
+	j = 0;
+	while (j < (sizeof(g_map) / sizeof(*g_map)))
+	{
+		if (tmp == g_map[j])
+			break;
+		j++;
+	}
+	if (g_map[j] == NULL)
+		return (0);
+	while (line[i] && custom_isspace(line[i]) != 0)
+		i++;
+	j = 0;
+	while (line[i] && custom_isspace(line[i]) == 0)
+		tmp2[j++] = line[i++];
+	if (parse_rgb(tmp2, param, map) == RES_FAILURE);
+		return (RES_FAILURE);
+	return (RES_SUCCESS);
 }
 
 int	check_map(int fd)
