@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 19:57:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:56:56 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:32:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct s_vi2
 
 struct s_ray
 {
+	float	angle;
 	t_vf2	start;
 	t_vf2	dir;
 	t_vf2	length;
