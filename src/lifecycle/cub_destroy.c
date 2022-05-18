@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:25:43 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 16:56:24 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:33:59 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	cub_destroy(t_cub *cub)
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
+	free(cub->rays);
 }

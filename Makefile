@@ -6,9 +6,12 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/17 16:38:07 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/18 13:37:40 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# TODO remove when deploying
+DEBUG					= true
 
 NAME					= cub3d
 
@@ -23,7 +26,9 @@ NAME_LIBS				+= $(NAME_MLX)
 
 CC						= cc
 CFLAGS					+= -Wall
+ifneq ($(DEBUG), true)
 CFLAGS					+= -Werror
+endif
 CFLAGS					+= -Wextra
 CFLAGS					+= -c
 CFLAGS					+= -MMD -MP
@@ -32,9 +37,6 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-
-# TODO remove when deploying
-DEBUG					= true
 
 ifeq ($(DEBUG), true)
 CFLAGS					+= -g3
@@ -71,6 +73,10 @@ SRC						= main.c \
 							lifecycle/cub_run.c \
 							lifecycle/cub_update.c \
 							lifecycle/cub_destroy.c \
+							lifecycle/init/cub_init_display.c \
+							lifecycle/init/cub_init_screen.c \
+							lifecycle/init/cub_init_window.c \
+							lifecycle/init/cub_init_rays.c \
 							mlx_handler/loop_handle.c \
 							mlx_handler/key_press_handle.c \
 							mlx_handler/key_release_handle.c \

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 18:27:04 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:33:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB_H
 
 # include "player.h"
+# include "ray.h"
 
 # include <stdbool.h>
 # include <stdint.h>
@@ -46,6 +47,7 @@ struct s_cub
 	t_canvas		screen;
 	union u_file	map_file;
 	t_player		player;
+	t_ray			*rays;
 };
 
 #endif
