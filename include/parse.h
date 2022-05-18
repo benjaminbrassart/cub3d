@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/17 12:31:37 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:51:05 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_param
 {
 	char	*textures[4];
-	int		*rgb[6];
+	int		*rgb[2];
 }	t_param;
 
 typedef struct s_map
