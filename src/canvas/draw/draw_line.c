@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:03:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:45:46 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:48:59 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,27 @@
 static void	_draw_line_dda(t_canvas *canvas, struct s_line const *line,
 	uint32_t color)
 {
-	float	x;
-	float	y;
-	float	dx;
-	float	dy;
+	float	pos[2];
+	float	delta[2];
 	float	step;
 	int		i;
 
-	dx = (line->x2 - line->x1);
-	dy = (line->y2 - line->y1);
-	if (fabs(dx) >= fabs(dy))
-		step = fabs(dx);
+	delta[0] = (line->x2 - line->x1);
+	delta[1] = (line->y2 - line->y1);
+	if (fabs(delta[0]) >= fabs(delta[1]))
+		step = fabs(delta[0]);
 	else
-		step = fabs(dy);
-	dx /= step;
-	dy /= step;
-	x = line->x1;
-	y = line->y1;
+		step = fabs(delta[1]);
+	delta[0] /= step;
+	delta[1] /= step;
+	pos[0] = line->x1;
+	pos[1] = line->y1;
 	i = 1;
 	while (i <= step)
 	{
-		canvas_setpx(canvas, x, y, color);
-		x += dx;
-		y += dy;
+		canvas_setpx(canvas, pos[0], pos[1], color);
+		pos[0] += delta[0];
+		pos[1] += delta[1];
 		++i;
 	}
 }
