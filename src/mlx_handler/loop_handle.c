@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 18:30:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:09:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	loop_handle(t_cub *cub)
 		{
 			if (g_inputs[n].action.mask & INPUT_EXIT)
 				return (destroy_handle(cub));
-			_factors_add(&g_inputs[n].action.factors, &factors);
+			factors_add(&g_inputs[n].action.factors, &factors);
 		}
 		++n;
 	}
@@ -62,54 +62,24 @@ int	loop_handle(t_cub *cub)
 	return (0);
 }
 
-static bool	_check_collision(float x, float y, int factor)
-{
-	int const	xi = round(x + (0.5 * factor));
-	int const	yi = round(y + (0.5 * factor));
-
-	return ((yi >= 0 && yi < MAP_HEIGHT && xi >= 0
-			&& (unsigned int)xi < ft_strlen(g_map[yi]) & g_map[yi][xi] != '1'));
-}
-
 static void	_move_player_x(t_player *player, int factor)
 {
-	float	x;
-	float	y;
-
 	if (factor == 0)
 		return ;
-	x = player->x + factor * MOVEMENT_SPEED * cos(player->yaw + M_PI_2);
-	if (_check_collision(x, player->y, factor))
-		player->x = x;
-	y = player->y + factor * MOVEMENT_SPEED * sin(player->yaw + M_PI_2);
-	if (_check_collision(player->x, y, factor))
-		player->y = y;
+	player->x += factor * MOVEMENT_SPEED * cos(player->yaw + M_PI_2);
+	player->y += factor * MOVEMENT_SPEED * sin(player->yaw + M_PI_2);
 }
 
 static void	_move_player_y(t_player *player, int factor)
 {
-	float	x;
-	float	y;
-
 	if (factor == 0)
 		return ;
-	x = player->x + factor * MOVEMENT_SPEED * cos(player->yaw + M_PI);
-	if (_check_collision(x, player->y, factor))
-		player->x = x;
-	y = player->y + factor * MOVEMENT_SPEED * sin(player->yaw + M_PI);
-	if (_check_collision(player->x, y, factor))
-		player->y = y;
+	player->x += factor * MOVEMENT_SPEED * cos(player->yaw + M_PI);
+	player->y += factor * MOVEMENT_SPEED * sin(player->yaw + M_PI);
 }
 
 static void	_move_player_yaw(t_player *player, int factor)
 {
 	if (factor != 0)
 		player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
-}
-
-static void	_factors_add(struct s_factors const *src, struct s_factors *dest)
-{
-	dest->x += src->x;
-	dest->y += src->y;
-	dest->yaw += src->yaw;
 }

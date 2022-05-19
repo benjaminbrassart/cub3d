@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:13:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:50:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:09:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define INPUT_CAM_RIGHT	INPUT_CAM_RIGHT
 # define INPUT_SPRINT		INPUT_SPRINT
 
+# include "utils.h"
+
 # include <X11/keysym.h>
 
 enum e_input_mask
@@ -37,13 +39,6 @@ enum e_input_mask
 	INPUT_CAM_LEFT	= (1 << 5),
 	INPUT_CAM_RIGHT	= (1 << 6),
 	INPUT_SPRINT	= (1 << 7),
-};
-
-struct s_factors
-{
-	int	x;
-	int	y;
-	int	yaw;
 };
 
 struct s_input

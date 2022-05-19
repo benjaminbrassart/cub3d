@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   factors_add.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 18:28:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:08:58 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/19 13:07:24 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/19 13:08:18 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <stdint.h>
-
-struct s_factors
+void	factors_add(struct s_factors const *src, struct s_factors *dest)
 {
-	int	x;
-	int	y;
-	int	yaw;
-};
-
-uint32_t	rgb(uint8_t r, uint8_t g, uint8_t b);
-uint32_t	rgba(uint8_t r, uint8_t g, uint8_t b, float alpha);
-
-void		swapi(int *x, int *y);
-
-float		ft_modf(float x, float y);
-
-void		factors_add(struct s_factors const *src, struct s_factors *dest);
-
-#endif
+	dest->x += src->x;
+	dest->y += src->y;
+	dest->yaw += src->yaw;
+}
