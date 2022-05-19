@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:49:48 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:26:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,23 @@ static float	_compute_new_distance(t_ray *ray)
 	return (dist);
 }
 
-bool	ray_cast(t_ray *ray, float *distance, float *x, float *y)
+bool	ray_cast(t_ray *ray, float max_distance)
 {
 	bool	tile_found;
 	float	dist;
 
 	dist = 0.0f;
 	tile_found = false;
-	while (!tile_found && dist < RENDER_DISTANCE)
+	while (!tile_found && dist < max_distance)
 	{
 		dist = _compute_new_distance(ray);
 		tile_found = _check_found(ray);
 	}
 	if (tile_found)
 	{
-		if (x != NULL)
-			*x = ray->start.x + ray->dir.x * dist;
-		if (y != NULL)
-			*y = ray->start.y + ray->dir.y * dist;
-		if (distance != NULL)
-			*distance = dist;
+		ray->result.x = ray->start.x + ray->dir.x * dist;
+		ray->result.y = ray->start.y + ray->dir.y * dist;
+		ray->distance = dist;
 	}
 	return (tile_found);
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:20:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:26:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 void	ui_draw_projection(t_cub *cub)
 {
 	t_ray	ray;
-	float	distance;
 	t_shape	shape;
 	float	height;
 	float	offset;
@@ -29,10 +28,10 @@ void	ui_draw_projection(t_cub *cub)
 	for (float i = -WIN_WIDTH / 2; i <= WIN_WIDTH / 2; ++i)
 	{
 		ray_init(&ray, &cub->player, cub->player.yaw + (i / WIN_WIDTH));
-		if (ray_cast(&ray, &distance, NULL, NULL))
+		if (ray_cast(&ray, RENDER_DISTANCE))
 		{
-			distance *= cos(cub->player.yaw - ray.angle);
-			height = WIN_HEIGHT / distance;
+			ray.distance *= cos(cub->player.yaw - ray.angle);
+			height = WIN_HEIGHT / ray.distance;
 			offset = (WIN_HEIGHT / 2.0f) - height / 2.0f;
 			shape.line = (struct s_line){
 				i + (WIN_WIDTH / 2), i + (WIN_WIDTH / 2),

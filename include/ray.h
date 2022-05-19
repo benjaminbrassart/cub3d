@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 19:57:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 18:32:55 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:25:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct s_vi2
 
 struct s_ray
 {
+	float	distance;
 	float	angle;
 	t_vf2	start;
 	t_vf2	dir;
@@ -42,10 +43,11 @@ struct s_ray
 	t_vf2	unit;
 	t_vf2	step;
 	t_vi2	check;
+	t_vf2	result;
 };
 
 void	ray_init(t_ray *ray, t_player const *player, float yaw);
 void	ray_intersect(t_ray const *ray, float distance, t_vf2 *intersect);
-bool	ray_cast(t_ray *ray, float *distance, float *x, float *y);
+bool	ray_cast(t_ray *ray, float max_distance);
 
 #endif
