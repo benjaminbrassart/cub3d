@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:09:20 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 13:16:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 static void	_move_player_x(t_player *player, int factor);
 static void	_move_player_y(t_player *player, int factor);
 static void	_move_player_yaw(t_player *player, int factor);
-static void	_factors_add(struct s_factors const *src, struct s_factors *dest);
 
 int	loop_handle(t_cub *cub)
 {
