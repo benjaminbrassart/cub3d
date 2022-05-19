@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 21:08:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:43:16 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIN_HEIGHT			1000
 # define WIN_TITLE			"CUB3D"
 
-# define MM_TILE_SIZE		64
+# define MM_TILE_SIZE		8
 
 # define MOVEMENT_SPEED		0.04f
 # define SPRINT_SPEED		5.0f
