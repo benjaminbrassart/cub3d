@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/18 13:37:40 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/19 12:21:07 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,10 @@ SRC						= main.c \
 							raycasting/ray_init.c \
 							raycasting/ray_intersect.c \
 							raycasting/ray_cast.c \
+							ui/ui_draw_minimap.c \
+							ui/ui_draw_background.c \
+							ui/ui_draw_projection.c \
+							ui/get_tile_color.c \
 							utils/print_error.c \
 							utils/get_input.c \
 							utils/ft_modf.c \

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_update.c                                       :+:      :+:    :+:   */
+/*   ui_draw_background.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 16:37:07 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:19:57 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/19 12:15:41 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/19 12:19:30 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "removeme.h"
 
 #include "canvas.h"
-#include "cub.h"
-#include "lifecycle.h"
-#include "ray.h"
 #include "ui.h"
-#include "utils.h"
 
-#include <math.h>
-#include <stddef.h>
-
-void	cub_update(t_cub *cub)
+void	ui_draw_background(t_cub *cub)
 {
-	canvas_clear(&cub->screen);
-	ui_draw_background(cub);
-	ui_draw_projection(cub);
-	// _draw_map(cub);
-	// _draw_player(cub);
-	// _draw_hit(cub);
+	t_shape	shape;
+
+	shape.rectangle = (struct s_rect){
+		0, WIN_WIDTH,
+		0, WIN_HEIGHT / 2,
+	};
+	canvas_draw_shape(&cub->screen, fill_rect, &shape, 0xAADDFF); // TODO
+	shape.rectangle = (struct s_rect){
+		0, WIN_WIDTH,
+		WIN_HEIGHT / 2, WIN_HEIGHT,
+	};
+	canvas_draw_shape(&cub->screen, fill_rect, &shape, 0xAAFFAA); // TODO
 }

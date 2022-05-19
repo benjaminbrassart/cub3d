@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_update.c                                       :+:      :+:    :+:   */
+/*   get_tile_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 16:37:07 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:19:57 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/19 12:06:17 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/19 12:08:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
-#include "removeme.h"
-
-#include "canvas.h"
-#include "cub.h"
-#include "lifecycle.h"
-#include "ray.h"
 #include "ui.h"
-#include "utils.h"
 
-#include <math.h>
-#include <stddef.h>
+#include "ft.h"
 
-void	cub_update(t_cub *cub)
+struct s_tile_color const	*get_tile_color(char tile)
 {
-	canvas_clear(&cub->screen);
-	ui_draw_background(cub);
-	ui_draw_projection(cub);
-	// _draw_map(cub);
-	// _draw_player(cub);
-	// _draw_hit(cub);
+	int	i;
+
+	i = 0;
+	while (g_tile_colors[i].charset != NULL)
+	{
+		if (ft_strchr(g_tile_colors[i].charset, tile) != NULL)
+			break ;
+		++i;
+	}
+	return (&g_tile_colors[i]);
 }
