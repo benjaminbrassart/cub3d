@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:26:46 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:59:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 #include "ray.h"
 #include "ui.h"
 
+#include "mlx.h"
+
 #include <math.h>
+#include <stdio.h>
 
 void	ui_draw_projection(t_cub *cub)
 {
@@ -24,8 +27,10 @@ void	ui_draw_projection(t_cub *cub)
 	t_shape	shape;
 	float	height;
 	float	offset;
+	float	i;
 
-	for (float i = -WIN_WIDTH / 2; i <= WIN_WIDTH / 2; ++i)
+	i = -WIN_WIDTH / 2;
+	while (i <= WIN_WIDTH)
 	{
 		ray_init(&ray, &cub->player, cub->player.yaw + (i / WIN_WIDTH));
 		if (ray_cast(&ray, RENDER_DISTANCE))
@@ -39,5 +44,6 @@ void	ui_draw_projection(t_cub *cub)
 			};
 			canvas_draw_shape(&cub->screen, draw_line, &shape, 0xFFFF0000);
 		}
+		++i;
 	}
 }

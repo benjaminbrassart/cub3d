@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   ui_draw_minimap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:05:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:15:13 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:52:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include "canvas.h"
 #include "ui.h"
 
+#include "mlx.h"
+
 #include <math.h>
 
 static void	_draw_player(t_cub *cub);
 static void	_draw_map(t_cub *cub);
 
-void	draw_minimap(t_cub *cub)
+void	ui_draw_minimap(t_cub *cub)
 {
 	_draw_map(cub);
 	_draw_player(cub);
@@ -37,10 +39,10 @@ static void	_draw_player(t_cub *cub)
 	t_shape const	dirln = {.line = {
 		cub->player.x * (MM_TILE_SIZE + 1),
 		cos(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
-			+ (cub->player.x * (MM_TILE_SIZE + 1)),
+		+ (cub->player.x * (MM_TILE_SIZE + 1)),
 		cub->player.y * (MM_TILE_SIZE + 1),
 		sin(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
-			+ (cub->player.y * (MM_TILE_SIZE + 1)),
+		+ (cub->player.y * (MM_TILE_SIZE + 1)),
 	}};
 
 	canvas_draw_shape(&cub->screen, fill_circle, &player_circle, 0xFF00FF00);

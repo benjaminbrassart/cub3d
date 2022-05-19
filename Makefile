@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/19 12:21:07 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/19 12:59:36 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ SRC						= main.c \
 							ui/ui_draw_minimap.c \
 							ui/ui_draw_background.c \
 							ui/ui_draw_projection.c \
+							ui/ui_draw_info.c \
 							ui/get_tile_color.c \
 							utils/print_error.c \
 							utils/get_input.c \

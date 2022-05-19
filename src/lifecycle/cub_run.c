@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:13:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 18:00:40 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:34:51 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,17 @@ char const	*_get_spawn_tile(float *x_ptr, float *y_ptr)
 int	cub_run(t_cub *cub)
 {
 	char const	*spawn_tile = _get_spawn_tile(&cub->player.x, &cub->player.y);
+	int			m;
 
 	if (spawn_tile == NULL)
 	{
 		print_error("map", "unable to find unique spawn");
 		return (RES_FAILURE);
 	}
-	switch (*spawn_tile)
-	{
-		case 'N':
-			cub->player.yaw += (M_PI / 2);
-		case 'W':
-			cub->player.yaw += (M_PI / 2);
-		case 'S':
-			cub->player.yaw += (M_PI / 2);
-	}
+	m = 0;
+	while ("ESWN"[m] != *spawn_tile)
+		++m;
+	cub->player.yaw = m * M_PI_2;
 	cub->player.x += 0.5;
 	cub->player.y += 0.5;
 	mlx_loop(cub->mlx);
