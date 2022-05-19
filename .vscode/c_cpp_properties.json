@@ -9,7 +9,7 @@
                 "${workspaceFolder}/minilibx-linux"
             ],
             "compilerPath": "/usr/bin/clang",
-            "cStandard": "c99",
+            "cStandard": "gnu99",
             "cppStandard": "c++14",
             "intelliSenseMode": "linux-clang-x64"
         }
