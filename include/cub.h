@@ -6,12 +6,15 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/18 13:33:43 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:09:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
+
+# define COLOR_CEILING	0
+# define COLOR_FLOOR	1
 
 # include "player.h"
 # include "ray.h"
@@ -48,6 +51,7 @@ struct s_cub
 	union u_file	map_file;
 	t_player		player;
 	t_ray			*rays;
+	uint32_t		colors[2];
 };
 
 #endif

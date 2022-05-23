@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 19:57:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:14:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 03:03:19 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
+# include "cardinal_point.h"
 # include "player.h"
 
 # include <stdbool.h>
@@ -35,15 +36,16 @@ struct s_vi2
 
 struct s_ray
 {
-	float	distance;
-	float	angle;
-	t_vf2	start;
-	t_vf2	dir;
-	t_vf2	length;
-	t_vf2	unit;
-	t_vf2	step;
-	t_vi2	check;
-	t_vf2	result;
+	float					distance;
+	float					angle;
+	t_vf2					start;
+	t_vf2					dir;
+	t_vf2					length;
+	t_vf2					unit;
+	t_vf2					step;
+	t_vi2					check;
+	t_vf2					result;
+	enum e_cardinal_point	hit_face;
 };
 
 void	ray_init(t_ray *ray, t_player const *player, float yaw);

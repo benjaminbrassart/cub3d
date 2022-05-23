@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/12 18:17:15 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/20 12:41:37 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	cub_load(t_cub *cub)
 	int	fd;
 	int	res;
 
+	cub->colors[COLOR_CEILING] = 0xAADDFF;
+	cub->colors[COLOR_FLOOR] = 0xAAFFAA;
 	return (RES_SUCCESS);
 	fd = open(cub->map_file.path, O_RDONLY);
 	if (fd == -1)
