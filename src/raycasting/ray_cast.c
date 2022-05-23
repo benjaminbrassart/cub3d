@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:01:35 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 04:14:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,22 @@ static float	_compute_new_distance(t_ray *ray)
 		ray->check.x += ray->step.x;
 		dist = ray->length.x;
 		ray->length.x += ray->unit.x;
+		if (ray->step.x == -1)
+			ray->hit_face = WEST;
+		else
+			ray->hit_face = EAST;
 	}
 	else
 	{
 		ray->check.y += ray->step.y;
 		dist = ray->length.y;
 		ray->length.y += ray->unit.y;
-	}
-	return (dist);
-}
-
-static void	_compute_hit_face(t_ray *ray)
-{
-	float const	hit_x = ft_modf(ray->result.x, 1.0f);
-	float const	hit_y = ft_modf(ray->result.y, 1.0f);\
-
-	if (hit_y > 0.0f && hit_x == 0.0f)
-	{
-		if (ray->angle > M_PI_2 && ray->angle < (3 * M_PI) / 2)
-			ray->hit_face = WEST;
-		else
-			ray->hit_face = EAST;
-	}
-	else if (hit_x > 0.0f && hit_y == 0.0f)
-	{
-		if (ray->angle >= M_PI && ray->angle < 2 * M_PI)
+		if (ray->step.y == -1)
 			ray->hit_face = NORTH;
 		else
 			ray->hit_face = SOUTH;
 	}
-	else
-		ray->hit_face = NORTH;
+	return (dist);
 }
 
 bool	ray_cast(t_ray *ray, float max_distance)
@@ -91,16 +76,7 @@ bool	ray_cast(t_ray *ray, float max_distance)
 	{
 		ray->result.x = ray->start.x + ray->dir.x * dist;
 		ray->result.y = ray->start.y + ray->dir.y * dist;
-		if (fmodf(ray->result.x, 1.0f) >= 0.9999f)
-			ray->result.x = 1.0f;
-		else if (fmodf(ray->result.x, 1.0f) <= -0.9999f)
-			ray->result.x = -1.0f;
-		if (fmodf(ray->result.y, 1.0f) >= 0.9999f)
-			ray->result.y = 1.0f;
-		else if (fmodf(ray->result.y, 1.0f) <= -0.9999f)
-			ray->result.y = -1.0f;
 		ray->distance = dist;
-		_compute_hit_face(ray);
 	}
 	return (tile_found);
 }
