@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:14:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 04:15:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 #include "ft.h"
 
 #include <math.h>
-
-//? https://github.com/mrouabeh/42-Cub3D/blob/master/inc/structures.h
-//? https://github.com/mrouabeh/42-Cub3D/blob/master/src/engine/raycasting.c
-//? https://github.com/mrouabeh/42-Cub3D/blob/master/src/engine/digital_differential_analyser.c
 
 //! FIXME have a length array for each line in map to avoid
 //! calculation of ft_strlen(map[y])
