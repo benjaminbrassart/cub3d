@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:38:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:40:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:19:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ union u_shape
 t_canvas	*canvas_load(t_cub const *cub, char const *filename, t_canvas *out);
 void		canvas_destroy(void *mlx, t_canvas *canvas);
 
+uint32_t	canvas_getpx(t_canvas const *canvas, float x, float y);
+uint32_t	canvas_unsafe_getpx(t_canvas const *canvas, int x, int y);
 void		canvas_setpx(t_canvas *canvas, int x, int y, uint32_t color);
 void		canvas_unsafe_setpx(t_canvas *canvas, unsigned int x,
 				unsigned int y, uint32_t color);
+
 void		canvas_clear(t_canvas *canvas);
 void		canvas_draw(t_cub *cub, t_canvas *canvas, int x, int y);
 void		canvas_draw_shape(t_canvas *canvas, t_shape_draw_fn *fn,
