@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/19 13:14:17 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/23 04:45:20 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC						= main.c \
 							args/args_check.c \
 							canvas/canvas_clear.c \
 							canvas/canvas_destroy.c \
+							canvas/canvas_load.c \
 							canvas/canvas_draw.c \
 							canvas/canvas_draw_shape.c \
 							canvas/canvas_setpx.c \

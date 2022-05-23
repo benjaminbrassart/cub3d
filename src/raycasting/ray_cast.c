@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:15:46 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 05:06:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
 #include "removeme.h" //! remove
 
+#include "def.h"
 #include "ray.h"
 
 #include "ft.h"

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:48:24 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 05:06:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static int	__load(t_cub *cub)
 	cub->colors[COLOR_CEILING] = 0xAADDFF;
 	cub->colors[COLOR_FLOOR] = 0xAAFFAA;
 	if (
-		canvas_load(cub, "textures/north.xpm", &cub->textures[TEXTURE_NORTH])
-		&& canvas_load(cub, "textures/south.xpm", &cub->textures[TEXTURE_SOUTH])
-		&& canvas_load(cub, "textures/west.xpm", &cub->textures[TEXTURE_WEST])
-		&& canvas_load(cub, "textures/east.xpm", &cub->textures[TEXTURE_EAST])
+		canvas_load(cub, "textures/north.xpm", &cub->textures[NORTH])
+		&& canvas_load(cub, "textures/south.xpm", &cub->textures[SOUTH])
+		&& canvas_load(cub, "textures/west.xpm", &cub->textures[WEST])
+		&& canvas_load(cub, "textures/east.xpm", &cub->textures[EAST])
 	)
 		return (RES_SUCCESS);
 	print_error("textures", "failed to load debug textures");

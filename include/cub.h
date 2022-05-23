@@ -6,21 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 04:47:30 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 06:02:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# define TEXTURE_NORTH	0
-# define TEXTURE_SOUTH	1
-# define TEXTURE_EAST	2
-# define TEXTURE_WEST	3
-
-# define COLOR_CEILING	0
-# define COLOR_FLOOR	1
-
+# include "def.h"
 # include "player.h"
 # include "ray.h"
 
