@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 16:17:01 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:54:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ static void	_move_player(t_player *player, int x, int y)
 		player->y += y * MOVEMENT_SPEED * sin(player->yaw + M_PI);
 	}
 }
-
-#include <stdio.h>
 
 static void	_move_player_cam(t_player *player, int yaw, int pitch)
 {
