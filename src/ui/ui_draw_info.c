@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:58:29 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:59:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:56:17 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,7 @@ void	ui_draw_info(t_cub *cub)
 	snprintf(text, sizeof (text), "yaw: %.2f",
 		cub->player.yaw * (180 / M_PI) - 180);
 	mlx_string_put(cub->mlx, cub->win, 10, 360, 0xFFFFFFFF, text);
+	snprintf(text, sizeof (text), "pitch: %.2f",
+		cub->player.pitch * (180 / M_PI));
+	mlx_string_put(cub->mlx, cub->win, 10, 375, 0xFFFFFFFF, text);
 }

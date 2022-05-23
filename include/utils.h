@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:28:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:08:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:22:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ struct s_factors
 	int	x;
 	int	y;
 	int	yaw;
+	int	pitch;
 };
 
 uint32_t	rgb(uint8_t r, uint8_t g, uint8_t b);

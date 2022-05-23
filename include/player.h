@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:49:15 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:22:33 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:35:17 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ struct s_player
 	float				x;
 	float				y;
 	float				yaw;
+	float				pitch;
 	enum e_input_mask	input_mask;
 };
 

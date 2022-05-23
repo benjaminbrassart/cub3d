@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:13:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:09:05 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:10:07 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define INPUT_RIGHT		INPUT_RIGHT
 # define INPUT_CAM_LEFT		INPUT_CAM_LEFT
 # define INPUT_CAM_RIGHT	INPUT_CAM_RIGHT
-# define INPUT_SPRINT		INPUT_SPRINT
 
 # include "utils.h"
 
@@ -38,7 +37,8 @@ enum e_input_mask
 	INPUT_RIGHT		= (1 << 4),
 	INPUT_CAM_LEFT	= (1 << 5),
 	INPUT_CAM_RIGHT	= (1 << 6),
-	INPUT_SPRINT	= (1 << 7),
+	INPUT_CAM_UP	= (1 << 7),
+	INPUT_CAM_DOWN	= (1 << 8),
 };
 
 struct s_input
@@ -52,13 +52,15 @@ struct s_input
 };
 
 static struct s_input const	g_inputs[] = {
-{.key = XK_Escape, .action.mask = INPUT_EXIT},
-{.key = XK_w, .action.factors = {0, -1, 0}, .action.mask = INPUT_UP},
-{.key = XK_s, .action.factors = {0, 1, 0}, .action.mask = INPUT_DOWN},
-{.key = XK_a, .action.factors = {-1, 0, 0}, .action.mask = INPUT_LEFT},
-{.key = XK_d, .action.factors = {1, 0, 0}, .action.mask = INPUT_RIGHT},
-{.key = XK_Left, .action.factors = {0, 0, -1}, .action.mask = INPUT_CAM_LEFT},
-{.key = XK_Right, .action.factors = {0, 0, 1}, .action.mask = INPUT_CAM_RIGHT},
+{XK_Escape, {INPUT_EXIT, {}}},
+{XK_w, {INPUT_UP, {0, -1, 0, 0}}},
+{XK_s, {INPUT_DOWN, {0, 1, 0, 0}}},
+{XK_a, {INPUT_LEFT, {-1, 0, 0, 0}}},
+{XK_d, {INPUT_RIGHT, {1, 0, 0, 0}}},
+{XK_Left, {INPUT_CAM_LEFT, {0, 0, -1, 0}}},
+{XK_Right, {INPUT_CAM_RIGHT, {0, 0, 1, 0}}},
+{XK_Up, {INPUT_CAM_UP, {0, 0, 0, -1}}},
+{XK_Down, {INPUT_CAM_DOWN, {0, 0, 0, 1}}},
 };
 
 struct s_input const	*get_input(int key);

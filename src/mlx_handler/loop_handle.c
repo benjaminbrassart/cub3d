@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 13:16:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:17:01 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 #include <stddef.h>
 #include <math.h>
 
-static void	_move_player_x(t_player *player, int factor);
-static void	_move_player_y(t_player *player, int factor);
-static void	_move_player_yaw(t_player *player, int factor);
+static void	_move_player(t_player *player, int x, int y);
+static void	_move_player_cam(t_player *player, int yaw, int pitch);
 
 int	loop_handle(t_cub *cub)
 {
@@ -54,31 +53,36 @@ int	loop_handle(t_cub *cub)
 		}
 		++n;
 	}
-	_move_player_yaw(&cub->player, factors.yaw);
-	_move_player_x(&cub->player, factors.x);
-	_move_player_y(&cub->player, factors.y);
+	_move_player_cam(&cub->player, factors.yaw, factors.pitch);
+	_move_player(&cub->player, factors.x, factors.y);
 	cub_update(cub);
 	return (0);
 }
 
-static void	_move_player_x(t_player *player, int factor)
+static void	_move_player(t_player *player, int x, int y)
 {
-	if (factor == 0)
-		return ;
-	player->x += factor * MOVEMENT_SPEED * cos(player->yaw + M_PI_2);
-	player->y += factor * MOVEMENT_SPEED * sin(player->yaw + M_PI_2);
+	if (x != 0)
+	{
+		player->x += x * MOVEMENT_SPEED * cos(player->yaw + M_PI_2);
+		player->y += x * MOVEMENT_SPEED * sin(player->yaw + M_PI_2);
+	}
+	if (y != 0)
+	{
+		player->x += y * MOVEMENT_SPEED * cos(player->yaw + M_PI);
+		player->y += y * MOVEMENT_SPEED * sin(player->yaw + M_PI);
+	}
 }
 
-static void	_move_player_y(t_player *player, int factor)
-{
-	if (factor == 0)
-		return ;
-	player->x += factor * MOVEMENT_SPEED * cos(player->yaw + M_PI);
-	player->y += factor * MOVEMENT_SPEED * sin(player->yaw + M_PI);
-}
+#include <stdio.h>
 
-static void	_move_player_yaw(t_player *player, int factor)
+static void	_move_player_cam(t_player *player, int yaw, int pitch)
 {
-	if (factor != 0)
-		player->yaw = ft_modf(player->yaw + (factor * CAMERA_SPEED), M_PI * 2);
+	if (yaw != 0)
+		player->yaw = ft_modf(player->yaw + (yaw * CAMERA_SPEED), M_PI * 2);
+	if (pitch != 0)
+		player->pitch = player->pitch + (pitch * CAMERA_SPEED);
+	if (player->pitch > M_PI)
+		player->pitch = M_PI;
+	if (player->pitch < 0)
+		player->pitch = 0;
 }
