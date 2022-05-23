@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:59:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 03:35:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ui_draw_projection(t_cub *cub)
 	float	i;
 
 	i = -WIN_WIDTH / 2;
-	while (i <= WIN_WIDTH)
+	while (i < WIN_WIDTH / 2)
 	{
 		ray_init(&ray, &cub->player, cub->player.yaw + (i / WIN_WIDTH));
 		if (ray_cast(&ray, RENDER_DISTANCE))
