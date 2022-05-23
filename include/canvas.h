@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:38:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 16:46:47 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 04:40:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ union u_shape
 	struct s_line	line;
 };
 
+t_canvas	*canvas_load(t_cub const *cub, char const *filename, t_canvas *out);
+void		canvas_destroy(void *mlx, t_canvas *canvas);
+
 void		canvas_setpx(t_canvas *canvas, int x, int y, uint32_t color);
 void		canvas_unsafe_setpx(t_canvas *canvas, unsigned int x,
 				unsigned int y, uint32_t color);
@@ -58,7 +61,6 @@ void		canvas_clear(t_canvas *canvas);
 void		canvas_draw(t_cub *cub, t_canvas *canvas, int x, int y);
 void		canvas_draw_shape(t_canvas *canvas, t_shape_draw_fn *fn,
 				t_shape const *shape, uint32_t color);
-void		canvas_destroy(void *mlx, t_canvas *canvas);
 
 void		draw_rect(t_canvas *canvas, t_shape const *shape, uint32_t color);
 void		draw_circle(t_canvas *canvas, t_shape const *shape, uint32_t color);

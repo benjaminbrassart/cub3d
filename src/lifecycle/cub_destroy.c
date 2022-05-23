@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:25:43 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/18 13:33:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 04:50:01 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,23 @@
 
 #include <stdlib.h>
 
+static void	_destroy_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (cub->textures[i].img != NULL)
+			mlx_destroy_image(cub->mlx, cub->textures[i].img);
+		++i;
+	}
+}
+
 void	cub_destroy(t_cub *cub)
 {
 	mlx_do_key_autorepeaton(cub->mlx);
+	_destroy_textures(cub);
 	canvas_destroy(cub->mlx, &cub->screen);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);

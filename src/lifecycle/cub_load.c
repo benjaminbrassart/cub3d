@@ -6,10 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/20 12:41:37 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/23 04:48:24 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "canvas.h"
 #include "cuberr.h"
 #include "def.h"
 #include "lifecycle.h"
@@ -22,7 +23,16 @@
 // TODO parsing
 static int	__load(t_cub *cub)
 {
-	(void)cub;
+	cub->colors[COLOR_CEILING] = 0xAADDFF;
+	cub->colors[COLOR_FLOOR] = 0xAAFFAA;
+	if (
+		canvas_load(cub, "textures/north.xpm", &cub->textures[TEXTURE_NORTH])
+		&& canvas_load(cub, "textures/south.xpm", &cub->textures[TEXTURE_SOUTH])
+		&& canvas_load(cub, "textures/west.xpm", &cub->textures[TEXTURE_WEST])
+		&& canvas_load(cub, "textures/east.xpm", &cub->textures[TEXTURE_EAST])
+	)
+		return (RES_SUCCESS);
+	print_error("textures", "failed to load debug textures");
 	return (RES_FAILURE);
 }
 
@@ -31,9 +41,7 @@ int	cub_load(t_cub *cub)
 	int	fd;
 	int	res;
 
-	cub->colors[COLOR_CEILING] = 0xAADDFF;
-	cub->colors[COLOR_FLOOR] = 0xAAFFAA;
-	return (RES_SUCCESS);
+	return (__load(cub));
 	fd = open(cub->map_file.path, O_RDONLY);
 	if (fd == -1)
 	{
