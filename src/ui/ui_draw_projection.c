@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 17:34:13 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:29:57 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@
 #include <math.h>
 #include <stdio.h>
 
+#include "timings.h"
+
 static int	_get_line(t_canvas const *canvas, t_ray const *ray)
 {
-	float	axis;
-	int		res;
+	float const	*axis;
+	int			res;
 
 	if (ray->hit_face == NORTH || ray->hit_face == SOUTH)
-		axis = ray->result.x;
+		axis = &ray->result.x;
 	else
-		axis = ray->result.y;
-	res = (int)(ft_modf(axis, 1.0f) * canvas->width);
+		axis = &ray->result.y;
+	res = (int)(ft_modf(*axis, 1.0f) * canvas->width);
 	return (res);
 }
 
@@ -53,30 +55,31 @@ static void	_draw_textured(t_cub *cub, t_ray *ray, int i)
 	while (n < height)
 	{
 		canvas_setpx(&cub->screen, i + (WIN_WIDTH / 2), offset + n,
-			canvas_getpx(canvas, _get_line(canvas, ray),
+			canvas_unsafe_getpx(canvas, _get_line(canvas, ray),
 				_get_column(canvas, ray, n)));
 		++n;
 	}
-	// shape.line = (struct s_line){
-	// 	i + (WIN_WIDTH / 2), i + (WIN_WIDTH / 2),
-	// 	offset, (height + offset),
-	// };
 }
 
 void	ui_draw_projection(t_cub *cub)
 {
-	t_ray		ray;
-	int			i;
+	t_ray	ray;
+	int		i;
+	bool	cast;
 
 	i = -WIN_WIDTH / 2;
 	while (i < WIN_WIDTH / 2)
 	{
 		ray_init(&ray, &cub->player, cub->player.yaw + (1.0f * i / WIN_WIDTH));
-		if (ray_cast(&ray, RENDER_DISTANCE))
+		cast = ray_cast(&ray, RENDER_DISTANCE);
+		if (cast)
 		{
 			ray.distance *= cos(cub->player.yaw - ray.angle);
+			// timings_start("draw_column");
 			_draw_textured(cub, &ray, i);
+			// timings_stop();
 		}
 		++i;
 	}
+	// timings_dump();
 }

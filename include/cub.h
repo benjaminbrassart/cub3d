@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 06:02:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:00:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ struct s_canvas
 	int				endian;
 	unsigned int	height;
 	unsigned int	width;
-	bool			updated;
 };
 
 struct s_cub

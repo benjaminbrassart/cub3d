@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:38:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 18:26:53 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:03:15 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,5 @@ void	canvas_unsafe_setpx(t_canvas *canvas, unsigned int x, unsigned int y,
 
 	dst = (unsigned int *)(canvas->raw
 			+ (y * canvas->line_len + x * (canvas->bpp / 8)));
-	if (*dst != color)
-	{
-		*dst = color;
-		canvas->updated = true;
-	}
+	*dst = color;
 }
