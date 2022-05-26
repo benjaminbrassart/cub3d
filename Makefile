@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/26 13:28:01 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/05/26 14:08:32 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRC						= main.c \
 							mlx_handler/key_press_handle.c \
 							mlx_handler/key_release_handle.c \
 							mlx_handler/destroy_handle.c \
+							map/map_gettile.c \
 							player/player_move.c \
 							player/player_rotate.c \
 							raycasting/ray_init.c \

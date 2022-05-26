@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 12:00:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:00:29 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ struct s_cub
 	uint32_t		colors[2];
 	t_canvas		textures[4];
 };
+
+char	map_gettile(t_cub const *cub, int x, int y);
 
 #endif
