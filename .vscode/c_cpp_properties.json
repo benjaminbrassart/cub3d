@@ -6,7 +6,8 @@
                 "${default}",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/libft",
-                "${workspaceFolder}/minilibx-linux"
+                "${workspaceFolder}/minilibx-linux",
+                "${workspaceFolder}"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "gnu99",
