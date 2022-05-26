@@ -4,7 +4,8 @@
 *.o
 *.d
 *.gch
-.nfs*
 
+.nfs*
+*.png
 /obj/
 /cub3d
