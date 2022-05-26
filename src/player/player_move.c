@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 17:49:15 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 13:29:15 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/26 13:27:37 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/26 13:28:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#include "config.h"
 
-# include "input.h"
+#include "player.h"
 
-typedef struct s_player	t_player;
+#include <math.h>
 
-struct s_player
+void	player_move(t_player *player, int x, int y)
 {
-	float				x;
-	float				y;
-	float				yaw;
-	float				pitch;
-	enum e_input_mask	input_mask;
-};
-
-void	player_rotate(t_player *player, int yaw, int pitch);
-void	player_move(t_player *player, int x, int y);
-
-#endif
+	if (x != 0)
+	{
+		player->x += x * MOVEMENT_SPEED * cos(player->yaw + M_PI_2);
+		player->y += x * MOVEMENT_SPEED * sin(player->yaw + M_PI_2);
+	}
+	if (y != 0)
+	{
+		player->x += y * MOVEMENT_SPEED * cos(player->yaw + M_PI);
+		player->y += y * MOVEMENT_SPEED * sin(player->yaw + M_PI);
+	}
+}
