@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   canvas_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/31 11:29:58 by msainton         ###   ########.fr       */
+/*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/16 11:50:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub.h"
-#include "def.h"
-#include "lifecycle.h"
+#include "canvas.h"
 
 #include "ft.h"
 
-#include <stdlib.h>
-
-int	main(int argc, char const *argv[])
+void	canvas_clear(t_canvas *canvas)
 {
-	t_cub	cub;
-	int		res;
-
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	ft_memset(canvas->raw, 0, canvas->height * canvas->width * (canvas->bpp / 8));
 }

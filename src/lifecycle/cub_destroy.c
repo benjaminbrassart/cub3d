@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/31 11:29:58 by msainton         ###   ########.fr       */
+/*   Created: 2022/05/12 14:25:43 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/15 16:56:24 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub.h"
-#include "def.h"
+#include "canvas.h"
 #include "lifecycle.h"
 
-#include "ft.h"
+#include "mlx.h"
 
 #include <stdlib.h>
 
-int	main(int argc, char const *argv[])
+void	cub_destroy(t_cub *cub)
 {
-	t_cub	cub;
-	int		res;
-
-	if (args_check(argc, argv) == RES_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	mlx_do_key_autorepeaton(cub->mlx);
+	canvas_destroy(cub->mlx, &cub->screen);
+	mlx_destroy_window(cub->mlx, cub->win);
+	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
 }

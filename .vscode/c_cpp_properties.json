@@ -5,7 +5,8 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/include",
-                "${workspaceFolder}/libft"
+                "${workspaceFolder}/libft",
+                "${workspaceFolder}/minilibx-linux"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c99",

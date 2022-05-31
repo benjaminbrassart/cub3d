@@ -6,17 +6,17 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/27 19:46:12 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:16:20 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# define ERROR_TEXTURE "Error\n Wrong Texture"
-# define ERROR_COLORS "Error\n Wrong Colors"
-# define ERROR_IDENTIFIER "Error\n Wrong Identifier"
-# define ERROR_MAP "Error\n Invalid Map"
+# define ERROR_TEXTURE "Error\nWrong Texture\n"
+# define ERROR_COLORS "Error\nWrong Colors\n"
+# define ERROR_IDENTIFIER "Error\nWrong Identifier\n"
+# define ERROR_MAP "Error\nInvalid Map\n"
 
 typedef struct s_param
 {

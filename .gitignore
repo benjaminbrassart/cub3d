@@ -4,6 +4,7 @@
 *.o
 *.d
 *.gch
+.nfs*
 
 /obj/
 /cub3d
