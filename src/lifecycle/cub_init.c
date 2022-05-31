@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 15:41:41 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:45:07 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	cub_init(t_cub *cub)
 	cub->player.pitch = M_PI_2;
 	res = (cub_init_display(cub)
 			&& cub_init_window(cub)
-			&& cub_init_screen(cub)
-			&& cub_init_rays(cub));
+			&& cub_init_screen(cub));
 	if (res != RES_FAILURE)
 		_setup_handlers(cub);
 	return (res);

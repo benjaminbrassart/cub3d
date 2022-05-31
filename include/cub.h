@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 14:00:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:43:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ struct s_cub
 	t_canvas		screen;
 	union u_file	map_file;
 	t_player		player;
-	t_ray			*rays;
 	uint32_t		colors[2];
 	t_canvas		textures[4];
 };

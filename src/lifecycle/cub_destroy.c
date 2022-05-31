@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:25:43 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 12:26:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:44:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ static void	_destroy_textures(t_cub *cub);
 
 void	cub_destroy(t_cub *cub)
 {
-	mlx_do_key_autorepeaton(cub->mlx);
-	_destroy_textures(cub);
-	canvas_destroy(cub->mlx, &cub->screen);
-	mlx_destroy_window(cub->mlx, cub->win);
-	mlx_destroy_display(cub->mlx);
-	free(cub->mlx);
-	free(cub->rays);
+	if (cub->mlx != NULL)
+	{
+		mlx_do_key_autorepeaton(cub->mlx);
+		_destroy_textures(cub);
+		canvas_destroy(cub->mlx, &cub->screen);
+		if (cub->win != NULL)
+			mlx_destroy_window(cub->mlx, cub->win);
+		mlx_destroy_display(cub->mlx);
+		free(cub->mlx);
+	}
 }
 
 static void	_destroy_textures(t_cub *cub)
