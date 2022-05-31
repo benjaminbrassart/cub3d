@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 00:46:06 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:50:50 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 #include <math.h>
 #include <stdio.h>
-
-#include "timings.h"
 
 static int	_get_line(t_canvas const *canvas, t_ray const *ray)
 {
