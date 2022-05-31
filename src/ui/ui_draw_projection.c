@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 12:29:57 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:46:06 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,24 @@ static int	_get_column(t_canvas const *canvas, t_ray const *ray, float n)
 static void	_draw_textured(t_cub *cub, t_ray *ray, int i)
 {
 	t_canvas const	*canvas = &cub->textures[ray->hit_face];
-	float const		height = WIN_HEIGHT / ray->distance;
-	float const		offset = ((1 - cub->player.pitch / M_PI) * WIN_HEIGHT)
-		- height / 2;
+	float			offset;
+	float			height;
 	float			n;
 
+	height = WIN_HEIGHT / ray->distance;
+	offset = ((float)WIN_HEIGHT - height) / 2;
 	n = 0;
+	if (offset < 0.0f)
+	{
+		n = -offset;
+		height += offset;
+	}
 	while (n < height)
 	{
 		canvas_setpx(&cub->screen, i + (WIN_WIDTH / 2), offset + n,
-			canvas_unsafe_getpx(canvas, _get_line(canvas, ray),
+			canvas_getpx(canvas, _get_line(canvas, ray),
 				_get_column(canvas, ray, n)));
-		++n;
+		n += 0.9;
 	}
 }
 
@@ -75,11 +81,8 @@ void	ui_draw_projection(t_cub *cub)
 		if (cast)
 		{
 			ray.distance *= cos(cub->player.yaw - ray.angle);
-			// timings_start("draw_column");
 			_draw_textured(cub, &ray, i);
-			// timings_stop();
 		}
 		++i;
 	}
-	// timings_dump();
 }
