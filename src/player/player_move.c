@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:27:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/31 21:46:47 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:54:30 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static void	_move_x(t_player *player, int x, float speed);
 static void	_move_y(t_player *player, int y, float speed);
-static bool	_check_collision(float move[2]);
+// static bool	_check_collision(float move[2]);
 
 void	player_move(t_player *player, int x, int y)
 {
@@ -67,26 +67,26 @@ static void	_move_y(t_player *player, int y, float speed)
 	}
 }
 
-static bool	_check_collision(float move[2])
-{
-	int const	x[2] = {(int)(move[0] - PLAYER_HITBOX / 2),
-					(int)(move[0] + PLAYER_HITBOX / 2)};
-	int const	y[2] = {(int)(move[1] - PLAYER_HITBOX / 2),
-					(int)(move[1] + PLAYER_HITBOX / 2)};
-	int			i;
-	int			j;
+// static bool	_check_collision(float move[2])
+// {
+// 	int const	x[2] = {(int)(move[0] - PLAYER_HITBOX / 2),
+// 					(int)(move[0] + PLAYER_HITBOX / 2)};
+// 	int const	y[2] = {(int)(move[1] - PLAYER_HITBOX / 2),
+// 					(int)(move[1] + PLAYER_HITBOX / 2)};
+// 	int			i;
+// 	int			j;
 
-	i = 0;
-	while (i < 2)
-	{
-		j = 0;
-		while (j < 2)
-		{
-			if (map_gettile(0, y[i], x[j]) == '1')
-				return (false);
-			++j;
-		}
-		++i;
-	}
-	return (true);
-}
+// 	i = 0;
+// 	while (i < 2)
+// 	{
+// 		j = 0;
+// 		while (j < 2)
+// 		{
+// 			if (map_gettile(0, y[i], x[j]) == '1')
+// 				return (false);
+// 			++j;
+// 		}
+// 		++i;
+// 	}
+// 	return (true);
+// }
