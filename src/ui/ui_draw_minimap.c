@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:05:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/19 12:52:38 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:24:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #include <math.h>
 
+static void	_draw_direction(t_cub *cub);
 static void	_draw_player(t_cub *cub);
 static void	_draw_map(t_cub *cub);
 
@@ -34,19 +35,11 @@ static void	_draw_player(t_cub *cub)
 	t_shape const	player_circle = {.circle = {
 		cub->player.x * (MM_TILE_SIZE + 1),
 		cub->player.y * (MM_TILE_SIZE + 1),
-		(MM_TILE_SIZE / 4)
-	}};
-	t_shape const	dirln = {.line = {
-		cub->player.x * (MM_TILE_SIZE + 1),
-		cos(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
-		+ (cub->player.x * (MM_TILE_SIZE + 1)),
-		cub->player.y * (MM_TILE_SIZE + 1),
-		sin(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
-		+ (cub->player.y * (MM_TILE_SIZE + 1)),
+		(MM_TILE_SIZE / 2)
 	}};
 
-	canvas_draw_shape(&cub->screen, fill_circle, &player_circle, 0xFF00FF00);
-	canvas_draw_shape(&cub->screen, draw_line, &dirln, 0xFFFFFFFF);
+	_draw_direction(cub);
+	canvas_draw_shape(&cub->screen, fill_circle, &player_circle, 0xFF000000);
 }
 
 static void	_draw_map(t_cub *cub)
@@ -71,4 +64,18 @@ static void	_draw_map(t_cub *cub)
 		}
 		++y;
 	}
+}
+
+static void	_draw_direction(t_cub *cub)
+{
+	t_shape const	dirln = {.line = {
+		cub->player.x * (MM_TILE_SIZE + 1),
+		cos(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
+		+ (cub->player.x * (MM_TILE_SIZE + 1)),
+		cub->player.y * (MM_TILE_SIZE + 1),
+		sin(cub->player.yaw) * (MM_TILE_SIZE * 1.5)
+		+ (cub->player.y * (MM_TILE_SIZE + 1)),
+	}};
+
+	canvas_draw_shape(&cub->screen, draw_line, &dirln, 0xFF000000);
 }
