@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:27:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 14:13:21 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:46:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	_move_x(t_player *player, int x, float speed)
 	{
 		move[0] += x * speed * cos(player->yaw + M_PI_2);
 		move[1] += x * speed * sin(player->yaw + M_PI_2);
-		if (!_check_collision(move))
-			return ;
+		// if (!_check_collision(move))
+		// 	return ;
 		player->x = move[0];
 		player->y = move[1];
 	}
@@ -60,8 +60,8 @@ static void	_move_y(t_player *player, int y, float speed)
 	{
 		move[0] += y * speed * cos(player->yaw + M_PI);
 		move[1] += y * speed * sin(player->yaw + M_PI);
-		if (!_check_collision(move))
-			return ;
+		// if (!_check_collision(move))
+		// 	return ;
 		player->x = move[0];
 		player->y = move[1];
 	}
