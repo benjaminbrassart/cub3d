@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 05:06:54 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 00:39:37 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 static int	__load(t_cub *cub)
 {
 	cub->colors[COLOR_CEILING] = 0xAADDFF;
-	cub->colors[COLOR_FLOOR] = 0xAAFFAA;
+	cub->colors[COLOR_FLOOR] = 0xFFAA00;
 	if (
 		canvas_load(cub, "textures/north.xpm", &cub->textures[NORTH])
 		&& canvas_load(cub, "textures/south.xpm", &cub->textures[SOUTH])
@@ -41,7 +41,7 @@ int	cub_load(t_cub *cub)
 	int	fd;
 	int	res;
 
-	return (__load(cub));
+	return (__load(cub) && cub_init_window(cub));
 	fd = open(cub->map_file.path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -51,5 +51,5 @@ int	cub_load(t_cub *cub)
 	cub->map_file.fd = fd;
 	res = __load(cub);
 	close(fd);
-	return (res);
+	return (RES_SUCCESS);
 }
