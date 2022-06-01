@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 01:32:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:22:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 08:34:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	**strlst_toarray(t_strlst const *head)
 static size_t	strlst_length(t_strlst const *head)
 {
 	size_t	len;
-
 
 	len = 0;
 	while (head != NULL)

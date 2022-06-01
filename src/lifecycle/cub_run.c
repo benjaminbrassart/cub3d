@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:13:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:19:31 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 08:35:22 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static char const	*_get_spawn_tile(t_cub *cub, float *x_ptr, float *y_ptr);
 
 int	cub_run(t_cub *cub)
 {
-	char const	*spawn_tile = _get_spawn_tile(cub, &cub->player.x, &cub->player.y);
+	char const	*spawn_tile = _get_spawn_tile(cub, &cub->player.x,
+			&cub->player.y);
 	int			m;
 
 	if (spawn_tile == NULL)
