@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:56:58 by msainton          #+#    #+#             */
-/*   Updated: 2022/05/31 12:06:05 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:35:38 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	texture(char *line, t_param *param, struct s_map *map)
 	return (1);
 }
 
-int	parse_color(char *str)
+uint32_t	parse_color(char *str)
 {
 	int			nbr;
 	int			bytes;
@@ -50,7 +50,7 @@ int	parse_color(char *str)
 	}
 	while (*end)
 	{
-		if (bytes != 0 && ft_isspace(end) == 0)
+		if (bytes != 0 && ft_isspace(*end) == 0)
 			return (-1);
 		*end++;
 	}
