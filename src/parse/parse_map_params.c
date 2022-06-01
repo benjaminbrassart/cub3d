@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_params.c                                     :+:      :+:    :+:   */
+/*   parse_map_params.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 03:48:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 08:30:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 static void	_print_invalid_identifier(char const *line);
 static int	_check_lut(char const *line, t_cub *cub);
 static int	_is_empty(char const *line);
+static int	_handle_error(int fd);
 
 int	parse_map_params(t_cub *cub, int fd)
 {
@@ -40,7 +41,7 @@ int	parse_map_params(t_cub *cub, int fd)
 		if (gnl == -1)
 		{
 			print_error("reading", strerror(errno));
-			return (RES_FAILURE);
+			return (_handle_error(fd));
 		}
 		if (_is_empty(line))
 		{
@@ -50,12 +51,17 @@ int	parse_map_params(t_cub *cub, int fd)
 		res = _check_lut(line, cub);
 		free(line);
 		if (res != RES_SUCCESS)
-			return (RES_FAILURE);
+			return (_handle_error(fd));
 		++count;
 	}
 	return (RES_SUCCESS);
 }
 
+static int	_handle_error(int fd)
+{
+	get_next_line(fd, NULL);
+	return (RES_FAILURE);
+}
 
 static void	_print_invalid_identifier(char const *line)
 {

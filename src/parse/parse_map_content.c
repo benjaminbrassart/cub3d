@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:26:20 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 08:27:53 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,46 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+
+static void	_free_str(char *s);
+static int	_set_map_dimensions(t_cub *cub);
+static int	_cleanup(t_cub *cub, t_strlst **lst);
+static int	_handle_error(int fd, t_strlst **lst);
+
+int	parse_map_content(t_cub *cub, int fd)
+{
+	char		*line;
+	int			gnl;
+	t_strlst	*lst;
+
+	lst = NULL;
+	while (true)
+	{
+		gnl = get_next_line(fd, &line);
+		if (gnl == 0)
+			break ;
+		if (gnl == -1)
+		{
+			print_error("reading", strerror(errno));
+			return (_handle_error(fd, &lst));
+		}
+		if (!strlst_push(&lst, line))
+		{
+			free(line);
+			print_error(NULL, strerror(errno));
+			return (_handle_error(fd, &lst));
+		}
+		++cub->map_height;
+	}
+	return (_cleanup(cub, &lst));
+}
+
+static int	_handle_error(int fd, t_strlst **lst)
+{
+	get_next_line(fd, NULL);
+	strlst_delete(lst, _free_str);
+	return (RES_FAILURE);
+}
 
 static void	_free_str(char *s)
 {
@@ -52,32 +92,4 @@ static int	_cleanup(t_cub *cub, t_strlst **lst)
 	}
 	strlst_delete(lst, NULL);
 	return (RES_SUCCESS);
-}
-
-int	parse_map_content(t_cub *cub, int fd)
-{
-	char		*line;
-	int			gnl;
-	t_strlst	*lst;
-
-	lst = NULL;
-	while (true)
-	{
-		gnl = get_next_line(fd, &line);
-		if (gnl == 0)
-			break ;
-		if (gnl == -1)
-		{
-			print_error("reading", strerror(errno));
-			return (RES_FAILURE);
-		}
-		if (!strlst_push(&lst, line))
-		{
-			free(line);
-			print_error(NULL, strerror(errno));
-			return (RES_FAILURE);
-		}
-		++cub->map_height;
-	}
-	return (_cleanup(cub, &lst));
 }
