@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 13:28:59 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:20:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	loop_handle(t_cub *cub)
 		}
 		++n;
 	}
-	player_rotate(&cub->player, factors.yaw, factors.pitch);
+	player_rotate(&cub->player, factors.yaw);
 	player_move(&cub->player, factors.x, factors.y);
 	cub_update(cub);
 	return (0);

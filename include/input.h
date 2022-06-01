@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:13:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 08:34:04 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:22:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ struct s_input
 
 static struct s_input const	g_inputs[] = {
 {XK_Escape, {INPUT_EXIT, {}}},
-{XK_w, {INPUT_UP, {0, -1, 0, 0}}},
-{XK_s, {INPUT_DOWN, {0, 1, 0, 0}}},
-{XK_a, {INPUT_LEFT, {-1, 0, 0, 0}}},
-{XK_d, {INPUT_RIGHT, {1, 0, 0, 0}}},
-{XK_Left, {INPUT_CAM_LEFT, {0, 0, -1, 0}}},
-{XK_Right, {INPUT_CAM_RIGHT, {0, 0, 1, 0}}},
+{XK_w, {INPUT_UP, {0, -1, 0}}},
+{XK_s, {INPUT_DOWN, {0, 1, 0}}},
+{XK_a, {INPUT_LEFT, {-1, 0, 0}}},
+{XK_d, {INPUT_RIGHT, {1, 0, 0}}},
+{XK_Left, {INPUT_CAM_LEFT, {0, 0, -1}}},
+{XK_Right, {INPUT_CAM_RIGHT, {0, 0, 1}}},
 };
 
 struct s_input const	*get_input(int key);
