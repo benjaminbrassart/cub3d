@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   def.h                                              :+:      :+:    :+:   */
+/*   strlst_delete.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:39:16 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 03:39:58 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/01 01:30:19 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/01 04:00:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_H
-# define DEF_H
+#include "string_list.h"
 
-# define PROGNAME		"cub3d"
-# define FILEEXT		".cub"
-# define RES_FAILURE	0
-# define RES_SUCCESS	1
+#include <stdlib.h>
 
-# define NORTH			0
-# define SOUTH			1
-# define EAST			2
-# define WEST			3
+void	strlst_delete(t_strlst **head, void (*free_value)(char *))
+{
+	t_strlst	*fast;
 
-# define COLOR_CEILING	0
-# define COLOR_FLOOR	1
-
-#endif
+	if (head == NULL)
+		return ;
+	while (*head != NULL)
+	{
+		fast = (*head)->next;
+		if (free_value != NULL)
+			free_value((*head)->value);
+		free(*head);
+		*head = fast;
+	}
+}

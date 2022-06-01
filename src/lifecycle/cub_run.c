@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:13:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 12:26:51 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 04:19:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 
 #include <math.h>
 
-static char const	*_get_spawn_tile(float *x_ptr, float *y_ptr);
+static char const	*_get_spawn_tile(t_cub *cub, float *x_ptr, float *y_ptr);
 
 int	cub_run(t_cub *cub)
 {
-	char const	*spawn_tile = _get_spawn_tile(&cub->player.x, &cub->player.y);
+	char const	*spawn_tile = _get_spawn_tile(cub, &cub->player.x, &cub->player.y);
 	int			m;
 
 	if (spawn_tile == NULL)
 	{
-		print_error("map", "unable to find unique spawn");
+		print_error(cub->map_file, "unable to find unique spawn");
 		return (RES_FAILURE);
 	}
 	m = 0;
@@ -44,17 +44,17 @@ int	cub_run(t_cub *cub)
 	return (RES_SUCCESS);
 }
 
-static char const	*_get_spawn_tile(float *x_ptr, float *y_ptr)
+static char const	*_get_spawn_tile(t_cub *cub, float *x_ptr, float *y_ptr)
 {
-	int			y;
-	char const	*tile_ptr;
+	unsigned int	y;
+	char const		*tile_ptr;
 
 	*x_ptr = -1;
 	*y_ptr = -1;
 	y = 0;
-	while (y < MAP_HEIGHT)
+	while (y < cub->map_height)
 	{
-		tile_ptr = g_map[y];
+		tile_ptr = cub->map[y];
 		while (1)
 		{
 			tile_ptr = ft_strpbrk(tile_ptr, "NSWE");
@@ -62,7 +62,7 @@ static char const	*_get_spawn_tile(float *x_ptr, float *y_ptr)
 				break ;
 			if (*x_ptr != -1 || *y_ptr != -1)
 				return (NULL);
-			*x_ptr = tile_ptr - g_map[y];
+			*x_ptr = tile_ptr - cub->map[y];
 			*y_ptr = y;
 			++tile_ptr;
 		}
@@ -70,5 +70,5 @@ static char const	*_get_spawn_tile(float *x_ptr, float *y_ptr)
 	}
 	if (*x_ptr == -1 || *y_ptr == -1)
 		return (NULL);
-	return (&g_map[(int)*y_ptr][(int)*x_ptr]);
+	return (&cub->map[(int)*y_ptr][(int)*x_ptr]);
 }

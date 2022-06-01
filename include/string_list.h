@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   def.h                                              :+:      :+:    :+:   */
+/*   string_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 11:39:16 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 03:39:58 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/01 01:20:41 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/01 01:33:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_H
-# define DEF_H
+#ifndef STRING_LIST_H
+# define STRING_LIST_H
 
-# define PROGNAME		"cub3d"
-# define FILEEXT		".cub"
-# define RES_FAILURE	0
-# define RES_SUCCESS	1
+typedef struct s_strlst	t_strlst;
 
-# define NORTH			0
-# define SOUTH			1
-# define EAST			2
-# define WEST			3
+struct s_strlst
+{
+	char		*value;
+	t_strlst	*next;
+};
 
-# define COLOR_CEILING	0
-# define COLOR_FLOOR	1
+char	**strlst_toarray(t_strlst const *head);
+int		strlst_push(t_strlst **head, char *value);
+void	strlst_delete(t_strlst **head, void (*free_value)(char *));
 
-#endif
+#endif // STRING_LIST_H

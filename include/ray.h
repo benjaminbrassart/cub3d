@@ -6,16 +6,18 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 19:57:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 05:04:34 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 04:16:19 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "player.h"
+# include "cub.h"
 
 # include <stdbool.h>
+
+typedef struct s_cub	t_cub;
 
 typedef struct s_ray	t_ray;
 typedef struct s_vf2	t_vf2;
@@ -48,6 +50,6 @@ struct s_ray
 };
 
 void	ray_init(t_ray *ray, t_player const *player, float yaw);
-bool	ray_cast(t_ray *ray, float max_distance);
+bool	ray_cast(t_cub const *cub, t_ray *ray, float max_distance);
 
 #endif

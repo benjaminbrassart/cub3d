@@ -3,47 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/30 12:16:20 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/01 03:48:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
+# include "cub.h"
+# include "def.h"
+
+# include <stddef.h>
+# include <stdint.h>
+
 # define ERROR_TEXTURE "Error\nWrong Texture\n"
 # define ERROR_COLORS "Error\nWrong Colors\n"
 # define ERROR_IDENTIFIER "Error\nWrong Identifier\n"
 # define ERROR_MAP "Error\nInvalid Map\n"
 
-typedef struct s_param
-{
-	void		*textures[4];
-	uint32_t	*rgb[2];
-	char		*map;
-}	t_param;
+typedef struct s_lut_parser	t_lut_parser;
 
-typedef struct s_map
+struct s_lut_parser
 {
 	char	*elem;
-	char	*img;
-	int		(*func)(char *line, t_param *param, struct s_map *map);
+	size_t	length;
+	int		(*func)(char const *, t_cub *, t_lut_parser const *);
 	int		index;
-}	t_map;
-
-
-static t_map const	g_map[] = {
-{"NO", texture, 0},
-{"SO", texture, 1},
-{"WE", texture, 2},
-{"EA", texture, 3},
-{"F", color, 0},
-{"C", color, 1},
-{NULL, NULL, NULL},
 };
 
-int		check_map(int fd);
+int	texture(char const *line, t_cub *cub, t_lut_parser const *map);
+int	color(char const *line, t_cub *cub, t_lut_parser const *map);
+
+int	parse_map_content(t_cub *cub, int fd);
+int	parse_map_params(t_cub *cub, int fd);
+
+//?
+int	check_map(t_cub *cub, int fd);
+
+int	parse_map(t_cub *cub, int fd);
+
+static t_lut_parser const	g_lut_parser[] = {
+{"NO", 2, texture, NORTH},
+{"SO", 2, texture, SOUTH},
+{"WE", 2, texture, WEST},
+{"EA", 2, texture, EAST},
+{"F", 1, color, COLOR_FLOOR},
+{"C", 1, color, COLOR_CEILING},
+{NULL, 0, NULL, -1},
+};
 
 #endif

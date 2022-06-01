@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_load.c                                         :+:      :+:    :+:   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 06:07:55 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/01 02:12:32 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/01 03:47:00 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "cuberr.h"
-#include "def.h"
-#include "lifecycle.h"
 #include "parse.h"
 
 #include <errno.h>
-#include <fcntl.h>
 #include <string.h>
-#include <unistd.h>
 
-int	cub_load(t_cub *cub)
+int	texture(char const *line, t_cub *cub, t_lut_parser const *lut)
 {
-	int	fd;
-	int	res;
-
-	fd = open(cub->map_file, O_DIRECTORY);
-	if (fd != -1)
+	if (cub->textures[lut->index].img != NULL)
 	{
-		close(fd);
-		print_error(cub->map_file, strerror(EISDIR));
+		print_error(lut->elem, "duplicated identifier");
 		return (RES_FAILURE);
 	}
-	fd = open(cub->map_file, O_RDONLY);
-	if (fd == -1)
+	if (canvas_load(cub, line, &cub->textures[lut->index]) == NULL)
 	{
-		print_error(cub->map_file, strerror(errno));
+		print_error(line, strerror(errno));
 		return (RES_FAILURE);
 	}
-	res = parse_map(cub, fd);
-	close(fd);
-	return (res && cub_init_window(cub));
+	return (RES_SUCCESS);
 }

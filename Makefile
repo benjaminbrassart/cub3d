@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/31 20:44:58 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/01 03:57:27 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,8 +85,16 @@ SRC						= main.c \
 							map/map_gettile.c \
 							player/player_move.c \
 							player/player_rotate.c \
+							parse/parse_map.c \
+							parse/parse_map_params.c \
+							parse/parse_map_content.c \
+							parse/parse_color.c \
+							parse/parse_texture.c \
 							raycasting/ray_init.c \
 							raycasting/ray_cast.c \
+							strlst/strlst_delete.c \
+							strlst/strlst_push.c \
+							strlst/strlst_toarray.c \
 							ui/ui_draw_minimap.c \
 							ui/ui_draw_background.c \
 							ui/ui_draw_projection.c \

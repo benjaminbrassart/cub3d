@@ -6,12 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 21:18:31 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/23 05:06:46 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 04:18:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "removeme.h" //! remove
 
 #include "def.h"
 #include "ray.h"
@@ -19,16 +18,6 @@
 #include "ft.h"
 
 #include <math.h>
-
-//! FIXME have a length array for each line in map to avoid
-//! calculation of ft_strlen(map[y])
-static bool	_check_found(t_ray const *ray)
-{
-	return (ray->check.y >= 0 && ray->check.y < MAP_HEIGHT
-		&& ray->check.x >= 0
-		&& (unsigned int)ray->check.x < ft_strlen(g_map[ray->check.y])
-		&& g_map[ray->check.y][ray->check.x] == '1');
-}
 
 static float	_compute_new_distance(t_ray *ray)
 {
@@ -57,7 +46,7 @@ static float	_compute_new_distance(t_ray *ray)
 	return (dist);
 }
 
-bool	ray_cast(t_ray *ray, float max_distance)
+bool	ray_cast(t_cub const *cub, t_ray *ray, float max_distance)
 {
 	bool	tile_found;
 	float	dist;
@@ -67,7 +56,7 @@ bool	ray_cast(t_ray *ray, float max_distance)
 	while (!tile_found && dist < max_distance)
 	{
 		dist = _compute_new_distance(ray);
-		tile_found = _check_found(ray);
+		tile_found = (map_gettile(cub, ray->check.x, ray->check.y) == '1');
 	}
 	if (tile_found)
 	{

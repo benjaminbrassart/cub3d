@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/31 20:43:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/01 04:10:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,10 @@
 
 # include <stdbool.h>
 # include <stdint.h>
+# include <stddef.h>
 
 typedef struct s_cub	t_cub;
 typedef struct s_canvas	t_canvas;
-
-union u_file
-{
-	char const	*path;
-	int			fd;
-};
 
 struct s_canvas
 {
@@ -45,10 +40,13 @@ struct s_cub
 	void			*mlx;
 	void			*win;
 	t_canvas		screen;
-	union u_file	map_file;
+	char const		*map_file;
 	t_player		player;
 	uint32_t		colors[2];
 	t_canvas		textures[4];
+	char			**map;
+	size_t			*map_lengths;
+	size_t			map_height;
 };
 
 char	map_gettile(t_cub const *cub, int x, int y);
