@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:18:33 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/31 11:29:58 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:49:07 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int	main(int argc, char const *argv[])
 	int		res;
 
 	if (args_check(argc, argv) == RES_FAILURE)
+		return (EXIT_FAILURE);
+	ft_memset(&cub, 0, sizeof (cub));
+	res = RES_FAILURE;
+	cub.map_file.path = argv[1];
+	if (cub_init(&cub))
+		res = (cub_load(&cub) && cub_run(&cub));
+	cub_destroy(&cub);
+	if (res == RES_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

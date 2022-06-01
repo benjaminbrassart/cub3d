@@ -6,12 +6,15 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/05/30 12:16:20 by msainton         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:04:36 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
+
+#include <unistd.h>
+#include <stdint.h>
 
 # define ERROR_TEXTURE "Error\nWrong Texture\n"
 # define ERROR_COLORS "Error\nWrong Colors\n"
@@ -33,7 +36,6 @@ typedef struct s_map
 	int		index;
 }	t_map;
 
-
 static t_map const	g_map[] = {
 {"NO", texture, 0},
 {"SO", texture, 1},
@@ -45,5 +47,8 @@ static t_map const	g_map[] = {
 };
 
 int		check_map(int fd);
+int		check_pos(char *str);
+int		custom_isspace(int c);
+int		check_luptable(char *line, t_param *param, struct s_map *map);
 
 #endif
