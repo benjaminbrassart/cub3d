@@ -7,5 +7,7 @@
 
 .nfs*
 *.png
+*.jpg
+*.jpeg
 /obj/
 /cub3d
