@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 07:41:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 08:42:28 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:49:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "parse.h"
 
 #include "ft.h"
+
+static int	_is_ground(int c);
 
 int	check_map_format(t_cub *cub)
 {
@@ -31,7 +33,7 @@ int	check_map_format(t_cub *cub)
 		x = 0;
 		while (x < cub->map_lengths[y])
 		{
-			if (ft_strchr(MAP_FLOOR_TILES, cub->map[y][x]) != NULL)
+			if (_is_ground(cub->map[y][x]))
 			{
 				if (y == 0 || y == cub->map_height - 1 || x == 0
 					|| x == cub->map_lengths[y] - 1)
@@ -40,9 +42,28 @@ int	check_map_format(t_cub *cub)
 					return (0);
 				}
 			}
+			else if (cub->map[y][x] == ' ')
+			{
+				if (
+					(x > 0 && _is_ground(cub->map[y][x - 1]))
+					|| (x < cub->map_lengths[y] - 1 &&  _is_ground(cub->map[y][x + 1]))
+					|| (y > 0 && _is_ground(cub->map[y - 1][x]))
+					|| (y < cub->map_height - 1 && _is_ground(cub->map[y + 1][x]))
+				)
+				{
+					print_error("map", "empty space next to floor");
+					return (0);
+				}
+				cub->map[y][x] = '1';
+			}
 			++x;
 		}
 		++y;
 	}
 	return (1);
+}
+
+static int	_is_ground(int c)
+{
+	return (ft_strchr(MAP_FLOOR_TILES, c) != NULL);
 }
