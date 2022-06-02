@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:10:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:29:40 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB_H
 
 # include "def.h"
-# include "player.h"
+# include "input.h"
 # include "ray.h"
 
 # include <stdbool.h>
@@ -23,6 +23,15 @@
 
 typedef struct s_cub	t_cub;
 typedef struct s_canvas	t_canvas;
+typedef struct s_player	t_player;
+
+struct s_player
+{
+	float				x;
+	float				y;
+	float				yaw;
+	enum e_input_mask	input_mask;
+};
 
 struct s_canvas
 {
@@ -50,5 +59,8 @@ struct s_cub
 };
 
 char	map_gettile(t_cub const *cub, int x, int y);
+
+void	player_rotate(t_cub *cub, int yaw);
+void	player_move(t_cub *cub, int x, int y);
 
 #endif

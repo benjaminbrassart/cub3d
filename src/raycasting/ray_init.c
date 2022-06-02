@@ -6,11 +6,10 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 20:02:20 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/17 18:33:07 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 09:08:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "player.h"
 #include "ray.h"
 
 #include "ft.h"

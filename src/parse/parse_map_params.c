@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 07:55:32 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 10:56:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	parse_map_params(t_cub *cub, int fd)
 			return (_handle_error(fd));
 		++count;
 	}
-	return (RES_SUCCESS);
+	if (count == 6)
+		return (RES_SUCCESS);
+	print_error("map", "missing parameter");
+	return (RES_FAILURE);
 }
 
 static int	_handle_error(int fd)

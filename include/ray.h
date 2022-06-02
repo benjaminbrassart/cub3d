@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 19:57:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:16:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 09:03:11 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 
 typedef struct s_cub	t_cub;
+typedef struct s_player	t_player;
 
 typedef struct s_ray	t_ray;
 typedef struct s_vf2	t_vf2;
