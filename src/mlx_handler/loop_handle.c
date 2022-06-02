@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 14:56:48 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:18:10 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "canvas.h"
 #include "cub.h"
-#include "input.h"
 #include "lifecycle.h"
 #include "mlx_handle.h"
 #include "ray.h"

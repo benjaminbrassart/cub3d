@@ -6,12 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:06:02 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:42:00 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:18:16 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-#include "input.h"
 #include "mlx_handle.h"
 
 #include "mlx.h"
