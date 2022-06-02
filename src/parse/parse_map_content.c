@@ -6,7 +6,7 @@
 /*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 10:39:24 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:27:42 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ static int	_handle_error(int fd, char *line, t_strlst **lst);
 int	parse_map_content(t_cub *cub, int fd)
 {
 	char		*line;
-	char		*s;
+	char		*pers;
 	int			gnl;
+	int			db;
 	t_strlst	*lst;
 
 	line = NULL;
+	db = 0;
 	while (true)
 	{
 		gnl = get_next_line(fd, &line);
@@ -60,10 +62,19 @@ int	parse_map_content(t_cub *cub, int fd)
 			print_error("reading", strerror(errno));
 			return (_handle_error(fd, NULL, &lst));
 		}
-		s = line;
-		while (*s != 0 && ft_strchr(MAP_TILES, *s) != NULL)
-			++s;
-		if (*s != 0)
+		pers = ft_strpbrk(line, MAP_PERS);
+		if (pers != NULL)
+		{
+			cub->player.x = pers - line;
+			cub->player.y = cub->map_height;
+			db += 1;
+		}
+		if (db > 1)
+		{
+			print_error("map", "double personnage");
+			return (_handle_error(fd, line, &lst));
+		}
+		if (ft_strpbrk(line, MAP_TILES) == NULL)
 		{
 			print_error("map", "invalid tile");
 			return (_handle_error(fd, line, &lst));
