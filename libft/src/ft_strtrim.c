@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/05/23 12:12:03 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:37:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "ft.h"
 
-#include "cub.h"
-
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
+char	*ft_strtrim(char const *s, char const *set)
 {
-	if (yaw != 0)
-	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
-	}
+	size_t	i;
+
+	if (!(s && set))
+		return (NULL);
+	while (*s && ft_strchr(set, *s))
+		++s;
+	i = ft_strlen(s);
+	if (i-- == 0)
+		return (ft_strdup(""));
+	while (ft_strchr(set, s[i]))
+		--i;
+	return (ft_substr(s, 0, i + 1));
 }

@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   intlen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/04/05 22:38:43 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:38:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#ifndef INTLEN_H
+# define INTLEN_H
 
-#include "cub.h"
+# define MAX_INT_LEN 11
 
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
-{
-	if (yaw != 0)
-	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
-	}
-}
+#endif

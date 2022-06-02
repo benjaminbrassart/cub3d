@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/05/20 14:42:57 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:37:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "ft.h"
 
-#include "cub.h"
-
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
+int	ft_isprint(int c)
 {
-	if (yaw != 0)
-	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
-	}
+	return (c >= 32 && c <= 126);
 }

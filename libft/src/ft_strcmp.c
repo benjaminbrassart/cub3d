@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/04/05 22:57:36 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:57:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "ft.h"
 
-#include "cub.h"
-
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
+int	ft_strcmp(char const *s1, char const *s2)
 {
-	if (yaw != 0)
+	while (*s1 && *s2 && *s1 == *s2)
 	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
+		++s1;
+		++s2;
 	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

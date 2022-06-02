@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 17:49:15 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 09:20:46 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/05/22 13:45:49 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:37:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#include "ft.h"
 
-# include "input.h"
-
-typedef struct s_player	t_player;
-
-struct s_player
+void	*ft_memccpy(void *dst, void const *src, int c, size_t n)
 {
-	float				x;
-	float				y;
-	float				yaw;
-	enum e_input_mask	input_mask;
-};
+	unsigned char		*d;
+	unsigned char const	*s;
+	unsigned char const	ch = c;
 
-void	player_rotate(t_player *player, int yaw);
-void	player_move(t_player *player, int x, int y);
-
-#endif
+	d = dst;
+	s = src;
+	while (n--)
+	{
+		*d++ = *s;
+		if (*s++ == ch)
+			return (d);
+	}
+	return (NULL);
+}

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   ft_strrstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/05/03 02:39:29 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/05/03 02:40:34 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "ft.h"
 
-#include "cub.h"
-
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
+char	*ft_strrstr(char const *haystack, char const *needle)
 {
-	if (yaw != 0)
+	size_t const	needle_len = ft_strlen(needle);
+	size_t			i;
+	size_t			j;
+
+	i = ft_strlen(haystack);
+	while (i >= needle_len)
 	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
+		j = needle_len;
+		while (j && haystack[i - j] == needle[needle_len - j])
+			--j;
+		if (j == 0)
+			return ((char *)haystack + i - needle_len);
+		--i;
 	}
+	return (NULL);
 }

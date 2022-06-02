@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:25:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:08:28 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/04/05 22:48:11 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/04/05 22:52:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "config.h"
+#include "ft.h"
+#include <stdlib.h>
 
-#include "cub.h"
-
-#include <math.h>
-
-void	player_rotate(t_cub *cub, int yaw)
+char	*ft_strndup(char const *s, size_t maxlen)
 {
-	if (yaw != 0)
+	size_t const	len = ft_strnlen(s, maxlen);
+	char			*buf;
+
+	buf = malloc((len + 1) * sizeof (*s));
+	if (buf)
 	{
-		cub->player.yaw += (yaw * CAMERA_SPEED);
-		if (cub->player.yaw < 0)
-			cub->player.yaw += M_PI * 2;
-		if (cub->player.yaw > M_PI * 2)
-			cub->player.yaw -= M_PI * 2;
+		ft_memmove(buf, s, len * sizeof (*s));
+		buf[len * sizeof (*s)] = 0;
 	}
+	return (buf);
 }

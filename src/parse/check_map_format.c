@@ -6,12 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 07:41:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 08:06:09 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 08:42:28 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cuberr.h"
 #include "parse.h"
+
+#include "ft.h"
 
 int	check_map_format(t_cub *cub)
 {
@@ -29,7 +31,7 @@ int	check_map_format(t_cub *cub)
 		x = 0;
 		while (x < cub->map_lengths[y])
 		{
-			if (cub->map[y][x] == '0')
+			if (ft_strchr(MAP_FLOOR_TILES, cub->map[y][x]) != NULL)
 			{
 				if (y == 0 || y == cub->map_height - 1 || x == 0
 					|| x == cub->map_lengths[y] - 1)
