@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:27:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:27:24 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:12:34 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,21 @@
 #include <math.h>
 #include <stdbool.h>
 
-static void	_move_x(t_player *player, int x, float speed);
-static void	_move_y(t_player *player, int y, float speed);
-
-static void	_apply_collision(t_cub *cub, float speed, int x, int y)
+static int	_check_collision(t_cub const *cub, float move_x, float move_y)
 {
-	t_ray	ray;
-	float	dir_angle;
-
-	dir_angle = cub->player.yaw + x * (M_PI * 2) + y * M_PI_2;
-	ray_init(&ray, &cub->player, dir_angle);
-	if (ray_cast(cub, &ray, 10.0f) && ray.distance < 0.25f)
-		return ;
-	_move_x(&cub->player, x, speed);
-	_move_y(&cub->player, y, speed);
+	if (map_gettile(cub, cub->player.x + move_x, cub->player.y + move_y) == '1')
+		return (0);
+	return (1);
 }
 
-void	player_move(t_cub *cub, int x, int y)
+void	player_move(t_cub *cub, float angle)
 {
-	float	speed;
+	float const	move_x = MOVEMENT_SPEED * cos(cub->player.yaw + angle);
+	float const	move_y = MOVEMENT_SPEED * sin(cub->player.yaw + angle);
 
-	speed = MOVEMENT_SPEED;
-	if (x == 0 && y == 0)
-		return ;
-	if (x != 0 && y != 0)
-		speed /= 1.5f;
-	_apply_collision(cub, speed, x, y);
-}
-
-static void	_move_x(t_player *player, int x, float speed)
-{
-	float	move[2];
-
-	move[0] = player->x;
-	move[1] = player->y;
-	if (x != 0)
+	if (_check_collision(cub, move_x, move_y))
 	{
-		move[0] += x * speed * cos(player->yaw + M_PI_2);
-		move[1] += x * speed * sin(player->yaw + M_PI_2);
-		player->x = move[0];
-		player->y = move[1];
-	}
-}
-
-static void	_move_y(t_player *player, int y, float speed)
-{
-	float	move[2];
-
-	move[0] = player->x;
-	move[1] = player->y;
-	if (y != 0)
-	{
-		move[0] += y * speed * cos(player->yaw + M_PI);
-		move[1] += y * speed * sin(player->yaw + M_PI);
-		player->x = move[0];
-		player->y = move[1];
+		cub->player.x += move_x;
+		cub->player.y += move_y;
 	}
 }

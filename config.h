@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/26 13:46:17 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:17:17 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 # define PLAYER_HITBOX		0.2
 
 // player position movement speed (distance)
-# define MOVEMENT_SPEED		0.04f
+// may only be between 0.0 and 1.0
+# define MOVEMENT_SPEED		0.03f
 // player camera angle speed (radians)
-# define CAMERA_SPEED		0.08f
+# define CAMERA_SPEED		0.02f
 
 // maximum distance of a projection drawing ray (distance)
 # define RENDER_DISTANCE	100.0f

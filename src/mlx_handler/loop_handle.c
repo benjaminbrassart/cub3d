@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:11:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 09:09:17 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:56:48 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 
 int	loop_handle(t_cub *cub)
 {
-	size_t				n;
-	struct s_factors	factors;
+	size_t	n;
 
-	ft_memset(&factors, 0, sizeof (factors));
 	n = 0;
 	while (n < (sizeof (g_inputs) / sizeof (*g_inputs)))
 	{
@@ -39,12 +37,10 @@ int	loop_handle(t_cub *cub)
 		{
 			if (g_inputs[n].action.mask & INPUT_EXIT)
 				return (destroy_handle(cub));
-			factors_add(&g_inputs[n].action.factors, &factors);
+			g_inputs[n].action.move_fn(cub, g_inputs[n].action.offset);
 		}
 		++n;
 	}
-	player_rotate(cub, factors.yaw);
-	player_move(cub, factors.x, factors.y);
 	cub_update(cub);
 	return (0);
 }

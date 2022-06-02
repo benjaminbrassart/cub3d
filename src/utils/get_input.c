@@ -6,11 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 19:19:52 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:39:50 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:43:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "cub.h"
 
 #include <stddef.h>
 #include <X11/keysym.h>
