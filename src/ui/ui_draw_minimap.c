@@ -6,12 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:05:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 08:43:55 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 08:05:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-#include "removeme.h"
 
 #include "canvas.h"
 #include "ui.h"

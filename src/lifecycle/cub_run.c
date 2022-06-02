@@ -6,11 +6,9 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:13:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 08:35:22 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 08:04:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "removeme.h" //! remove
 
 #include "canvas.h"
 #include "cuberr.h"
