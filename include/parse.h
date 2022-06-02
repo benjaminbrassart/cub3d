@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/06/02 11:19:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 13:21:08 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define MAP_TILES			"NSWE01 "
 # define MAP_FLOOR_TILES	"NSWE0"
+# define MAP_PERS			"NSWE"
 
 # define ERROR_TEXTURE		"Error\nWrong Texture\n"
 # define ERROR_COLORS		"Error\nWrong Colors\n"
