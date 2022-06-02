@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:27:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 15:12:34 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:25:50 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
-
 #include "cub.h"
 
 #include <math.h>

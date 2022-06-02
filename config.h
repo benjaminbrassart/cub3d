@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:16:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 15:17:17 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:58:19 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 
 // player position movement speed (distance)
 // may only be between 0.0 and 1.0
-# define MOVEMENT_SPEED		0.03f
+# define MOVEMENT_SPEED		0.1f
 // player camera angle speed (radians)
 # define CAMERA_SPEED		0.02f
 
 // maximum distance of a projection drawing ray (distance)
-# define RENDER_DISTANCE	100.0f
+# define RENDER_DISTANCE	250.0f
 
 #endif
