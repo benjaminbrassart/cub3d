@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   is_empty.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 18:28:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 07:54:31 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/02 07:52:50 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/02 07:54:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <stdint.h>
+#include "ft.h"
 
-struct s_factors
+int	is_empty(char const *line)
 {
-	int	x;
-	int	y;
-	int	yaw;
-};
-
-uint32_t	rgb(uint8_t r, uint8_t g, uint8_t b);
-uint32_t	rgba(uint8_t r, uint8_t g, uint8_t b, float alpha);
-
-void		swapi(int *x, int *y);
-
-float		ft_modf(float x, float y);
-
-void		factors_add(struct s_factors const *src, struct s_factors *dest);
-
-int			is_empty(char const *line);
-
-#endif
+	while (ft_isspace(*line))
+		++line;
+	return (*line == 0);
+}

@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/01 09:21:50 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/02 08:18:58 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRC						= main.c \
 							parse/parse_map_content.c \
 							parse/parse_color.c \
 							parse/parse_texture.c \
+							parse/check_map_format.c \
 							raycasting/ray_init.c \
 							raycasting/ray_cast.c \
 							strlst/strlst_delete.c \
@@ -104,7 +105,8 @@ SRC						= main.c \
 							utils/ft_modf.c \
 							utils/swap.c \
 							utils/rgb.c \
-							utils/factors_add.c
+							utils/factors_add.c \
+							utils/is_empty.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
 
@@ -129,8 +131,8 @@ clean:
 
 fclean:					clean
 						$(RM) $(NAME)
-						$(MAKE) -C $(DIR_LIBFT) fclean
-						$(MAKE) -C $(DIR_MLX) clean
+						# $(MAKE) -C $(DIR_LIBFT) fclean
+						# $(MAKE) -C $(DIR_MLX) clean
 
 re:						fclean all
 

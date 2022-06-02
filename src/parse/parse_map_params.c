@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 08:30:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 07:55:32 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cuberr.h"
 #include "def.h"
 #include "parse.h"
+#include "utils.h"
 
 #include "ft.h"
 
@@ -22,7 +23,6 @@
 
 static void	_print_invalid_identifier(char const *line);
 static int	_check_lut(char const *line, t_cub *cub);
-static int	_is_empty(char const *line);
 static int	_handle_error(int fd);
 
 int	parse_map_params(t_cub *cub, int fd)
@@ -43,7 +43,7 @@ int	parse_map_params(t_cub *cub, int fd)
 			print_error("reading", strerror(errno));
 			return (_handle_error(fd));
 		}
-		if (_is_empty(line))
+		if (is_empty(line))
 		{
 			free(line);
 			continue ;
@@ -100,11 +100,4 @@ static int	_check_lut(char const *line, t_cub *cub)
 	while (ft_isspace(*line))
 		++line;
 	return (parser->func(line, cub, parser));
-}
-
-static int	_is_empty(char const *line)
-{
-	while (ft_isspace(*line))
-		++line;
-	return (*line == 0);
 }

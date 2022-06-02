@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 17:44:55 by maxime            #+#    #+#             */
-/*   Updated: 2022/06/01 03:48:54 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 08:01:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@
 # include <stddef.h>
 # include <stdint.h>
 
-# define ERROR_TEXTURE "Error\nWrong Texture\n"
-# define ERROR_COLORS "Error\nWrong Colors\n"
-# define ERROR_IDENTIFIER "Error\nWrong Identifier\n"
-# define ERROR_MAP "Error\nInvalid Map\n"
+# warning use macros for error messages
+
+# define MAP_TILES			"NSWE01"
+# define MAP_FLOOR_TILES	"NSWE0"
+
+# define ERROR_TEXTURE		"Error\nWrong Texture\n"
+# define ERROR_COLORS		"Error\nWrong Colors\n"
+# define ERROR_IDENTIFIER	"Error\nWrong Identifier\n"
+# define ERROR_MAP			"Error\nInvalid Map\n"
 
 typedef struct s_lut_parser	t_lut_parser;
 
@@ -40,10 +45,9 @@ int	color(char const *line, t_cub *cub, t_lut_parser const *map);
 int	parse_map_content(t_cub *cub, int fd);
 int	parse_map_params(t_cub *cub, int fd);
 
-//?
-int	check_map(t_cub *cub, int fd);
-
 int	parse_map(t_cub *cub, int fd);
+
+int	check_map_format(t_cub *cub);
 
 static t_lut_parser const	g_lut_parser[] = {
 {"NO", 2, texture, NORTH},

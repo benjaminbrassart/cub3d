@@ -6,13 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 08:27:53 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 08:14:34 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cuberr.h"
 #include "parse.h"
 #include "string_list.h"
+#include "utils.h"
 
 #include "ft.h"
 
@@ -23,15 +24,16 @@
 static void	_free_str(char *s);
 static int	_set_map_dimensions(t_cub *cub);
 static int	_cleanup(t_cub *cub, t_strlst **lst);
-static int	_handle_error(int fd, t_strlst **lst);
+static int	_handle_error(int fd, char *line, t_strlst **lst);
 
 int	parse_map_content(t_cub *cub, int fd)
 {
 	char		*line;
+	char		*s;
 	int			gnl;
 	t_strlst	*lst;
 
-	lst = NULL;
+	line = NULL;
 	while (true)
 	{
 		gnl = get_next_line(fd, &line);
@@ -40,23 +42,48 @@ int	parse_map_content(t_cub *cub, int fd)
 		if (gnl == -1)
 		{
 			print_error("reading", strerror(errno));
-			return (_handle_error(fd, &lst));
+			return (_handle_error(fd, NULL, &lst));
+		}
+		if (!is_empty(line))
+			break ;
+		free(line);
+	}
+	lst = NULL;
+	while (true)
+	{
+		if (line == NULL)
+			gnl = get_next_line(fd, &line);
+		if (gnl == 0)
+			break ;
+		if (gnl == -1)
+		{
+			print_error("reading", strerror(errno));
+			return (_handle_error(fd, NULL, &lst));
+		}
+		s = line;
+		while (*s != 0 && ft_strchr(MAP_TILES, *s) != NULL)
+			++s;
+		if (*s != 0)
+		{
+			print_error("map", "invalid tile");
+			return (_handle_error(fd, line, &lst));
 		}
 		if (!strlst_push(&lst, line))
 		{
-			free(line);
 			print_error(NULL, strerror(errno));
-			return (_handle_error(fd, &lst));
+			return (_handle_error(fd, line, &lst));
 		}
 		++cub->map_height;
+		line = NULL;
 	}
 	return (_cleanup(cub, &lst));
 }
 
-static int	_handle_error(int fd, t_strlst **lst)
+static int	_handle_error(int fd, char *line, t_strlst **lst)
 {
 	get_next_line(fd, NULL);
 	strlst_delete(lst, _free_str);
+	free(line);
 	return (RES_FAILURE);
 }
 

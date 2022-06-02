@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 06:07:55 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 07:59:24 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int	cub_load(t_cub *cub)
 	}
 	res = parse_map(cub, fd);
 	close(fd);
-	return (res && cub_init_window(cub));
+	return (res && check_map_format(cub) && cub_init_window(cub));
 }
