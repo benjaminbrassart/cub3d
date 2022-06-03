@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_empty.c                                         :+:      :+:    :+:   */
+/*   skip_spaces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 07:52:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:20:55 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/03 08:15:41 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/03 08:40:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-
 #include "ft.h"
 
-int	is_empty(char const *line)
+char	*skip_spaces(char const *s)
 {
-	return (*skip_spaces(line) == 0);
+	char const	*p = s;
+
+	while (ft_isspace(*p))
+		++p;
+	return ((char *)p);
 }
