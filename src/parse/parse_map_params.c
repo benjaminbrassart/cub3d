@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_params.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 17:03:10 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/03 07:25:35 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,12 @@
 static void	_print_invalid_identifier(char const *line);
 static int	_check_lut(char const *line, t_cub *cub);
 static int	_handle_error(int fd);
-
-int parse_map_param1(int gnl, int fd, char *line)
-{
-	if (gnl == -1)
-	{
-		print_error("reading", strerror(errno));
-		return (-1);
-	}
-	
-	return (0);
-}
+static int	_loop(t_cub *cub, int fd, char *line, int *count_p);
 
 int	parse_map_params(t_cub *cub, int fd)
 {
 	char	*line;
 	int		gnl;
-	int		res;
 	int		count;
 
 	count = 0;
@@ -48,24 +37,35 @@ int	parse_map_params(t_cub *cub, int fd)
 	{
 		gnl = get_next_line(fd, &line);
 		if (gnl == 0)
-			break ;		
-		if (parse_map_param1(gnl, fd, line) != 0)
-			return (_handle_error(fd));
-		if (is_empty(line))
+			break ;
+		if (gnl == -1)
 		{
-			free(line);
-			continue ;
-		}
-		res = _check_lut(line, cub);
-		free(line);
-		if (res != RES_SUCCESS)
+			print_error("reading", strerror(errno));
 			return (_handle_error(fd));
-		++count;
+		}
+		if (!_loop(cub, fd, line, &count))
+			return (0);
 	}
 	if (count == 6)
 		return (RES_SUCCESS);
 	print_error("map", "missing parameter");
 	return (RES_FAILURE);
+}
+
+static int	_loop(t_cub *cub, int fd, char *line, int *count_p)
+{
+	int	res;
+
+	res = RES_SUCCESS;
+	if (!is_empty(line))
+	{
+		res = _check_lut(line, cub);
+		++(*count_p);
+	}
+	free(line);
+	if (res != RES_SUCCESS)
+		return (_handle_error(fd));
+	return (RES_SUCCESS);
 }
 
 static int	_handle_error(int fd)
