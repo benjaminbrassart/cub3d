@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 08:47:04 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 10:59:06 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,8 @@ SRC						= main.c \
 							utils/factors_add.c \
 							utils/is_empty.c \
 							utils/skip.c \
-							utils/ft_isnonspace.c
+							utils/ft_isnonspace.c \
+							utils/ft_strtrim_f.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
 

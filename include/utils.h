@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:28:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:48:13 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:57:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ float		ft_modf(float x, float y);
 
 void		factors_add(struct s_factors const *src, struct s_factors *dest);
 
+int			ft_isnonspace(int c);
 int			is_empty(char const *line);
 
 char		*skip(char const *s, int (*pred)(int));
-
-int			ft_isnonspace(int c);
+char		*ft_strtrim_f(char const *s, int (*pred)(int));
 
 #endif
