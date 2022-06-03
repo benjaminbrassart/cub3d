@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 12:16:30 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 12:18:09 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,7 @@ NAME_LIBS				+= $(NAME_MLX)
 
 CC						= cc
 CFLAGS					+= -Wall
-ifneq ($(DEBUG), true)
 CFLAGS					+= -Werror
-endif
 CFLAGS					+= -Wextra
 CFLAGS					+= -c
 CFLAGS					+= -MMD -MP
@@ -34,7 +32,6 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-CFLAGS					+= -O3
 
 LDLIBS					+= -lft
 LDLIBS					+= -lmlx
