@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:36:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 12:10:38 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:28:54 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define ERROR_MAP_NO_SPACE			"Not enough space"
 # define ERROR_MAP_SURROUND			"Not surrounded by walls"
 # define ERROR_MAP_HOLE				"Empty space next to floor"
-# define ERROR_MAP_SPAWN_DUPLICATED	"Duplicated spawn"
+# define ERROR_MAP_SPAWN_DUP		"Duplicated spawn"
 # define ERROR_MAP_NO_SPAWN			"No spawn found"
 
 # define ERROR_PARAM_INVALID		"Invalid identifier"
-# define ERROR_PARAM_DUPLICATED		"Duplicated identifier"
+# define ERROR_PARAM_DUP			"Duplicated identifier"
 # define ERROR_PARAM_MISSING		"Missing indentifier"
 
 # define ERROR_COLOR_TRAILING		"Trailing character"
