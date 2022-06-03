@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 17:18:05 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 07:01:17 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stddef.h>
 # include <X11/keysym.h>
 
-typedef struct s_cub	t_cub;
-typedef struct s_canvas	t_canvas;
-typedef struct s_player	t_player;
+// # include "utils.h"
+
+# include <math.h>
 
 # define INPUT_INIT			INPUT_INIT
 # define INPUT_EXIT			INPUT_EXIT
@@ -34,12 +34,9 @@ typedef struct s_player	t_player;
 # define INPUT_CAM_LEFT		INPUT_CAM_LEFT
 # define INPUT_CAM_RIGHT	INPUT_CAM_RIGHT
 
-# include "cub.h"
-# include "utils.h"
-
-# include <math.h>
-
-# include <stddef.h>
+typedef struct s_cub		t_cub;
+typedef struct s_canvas		t_canvas;
+typedef struct s_player		t_player;
 
 enum e_input_mask
 {
@@ -99,10 +96,12 @@ struct s_cub
 	size_t			map_height;
 };
 
-char	map_gettile(t_cub const *cub, int x, int y);
+char						map_gettile(t_cub const *cub, int x, int y);
 
-void	player_rotate(t_cub *cub, float angle);
-void	player_move(t_cub *cub, float angle);
+void						player_rotate(t_cub *cub, float angle);
+void						player_move(t_cub *cub, float angle);
+
+struct s_input const		*get_input(int key);
 
 static struct s_input const	g_inputs[] = {
 {XK_Escape, {INPUT_EXIT, NULL, 0.0f}},
@@ -113,7 +112,5 @@ static struct s_input const	g_inputs[] = {
 {XK_Left, {INPUT_CAM_LEFT, player_rotate, -M_PI_2}},
 {XK_Right, {INPUT_CAM_RIGHT, player_rotate, M_PI_2}},
 };
-
-struct s_input const	*get_input(int key);
 
 #endif

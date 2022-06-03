@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 12:15:35 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 04:16:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 07:00:42 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "canvas.h"
 #include "ray.h"
 #include "ui.h"
+#include "utils.h"
 
 #include "mlx.h"
 
