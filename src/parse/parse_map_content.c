@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 13:30:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:59:30 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static int	_check_line(t_cub *cub, char *line, t_strlst **lst)
 			++i;
 		cub->player.yaw = i * M_PI_2;
 	}
-	if (ft_strpbrk(line, MAP_TILES) == NULL)
+	if (!map_checkline(line))
 		print_error("map", ERROR_MAP_INVALID_TILE);
 	else if (!strlst_push(lst, line))
 		print_error(NULL, strerror(errno));

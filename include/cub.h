@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:12:56 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 07:02:39 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 14:57:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ struct s_cub
 };
 
 char						map_gettile(t_cub const *cub, int x, int y);
+int							map_checkline(char const *line);
 
 void						player_rotate(t_cub *cub, float angle);
 void						player_move(t_cub *cub, float angle);
