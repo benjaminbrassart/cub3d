@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_release_handle.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 12:41:17 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/15 12:41:56 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:53:21 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-#include "input.h"
 #include "mlx_handle.h"
 
 #include "mlx.h"

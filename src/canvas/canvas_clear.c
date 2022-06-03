@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 16:44:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/05/16 11:50:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:45:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 
 void	canvas_clear(t_canvas *canvas)
 {
-	ft_memset(canvas->raw, 0, canvas->height * canvas->width * (canvas->bpp / 8));
+	ft_memset(canvas->raw, 0, canvas->height * canvas->width
+		* (canvas->bpp / 8));
 }

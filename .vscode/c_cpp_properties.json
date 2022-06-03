@@ -6,10 +6,11 @@
                 "${default}",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/libft",
-                "${workspaceFolder}/minilibx-linux"
+                "${workspaceFolder}/minilibx-linux",
+                "${workspaceFolder}"
             ],
             "compilerPath": "/usr/bin/clang",
-            "cStandard": "c99",
+            "cStandard": "gnu99",
             "cppStandard": "c++14",
             "intelliSenseMode": "linux-clang-x64"
         }

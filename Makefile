@@ -6,9 +6,12 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/05/16 18:32:05 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 10:59:06 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# TODO remove when deploying
+DEBUG					= true
 
 NAME					= cub3d
 
@@ -23,7 +26,9 @@ NAME_LIBS				+= $(NAME_MLX)
 
 CC						= cc
 CFLAGS					+= -Wall
+ifneq ($(DEBUG), true)
 CFLAGS					+= -Werror
+endif
 CFLAGS					+= -Wextra
 CFLAGS					+= -c
 CFLAGS					+= -MMD -MP
@@ -32,9 +37,6 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-
-# TODO remove when deploying
-DEBUG					= true
 
 ifeq ($(DEBUG), true)
 CFLAGS					+= -g3
@@ -58,8 +60,10 @@ SRC						= main.c \
 							args/args_check.c \
 							canvas/canvas_clear.c \
 							canvas/canvas_destroy.c \
+							canvas/canvas_load.c \
 							canvas/canvas_draw.c \
 							canvas/canvas_draw_shape.c \
+							canvas/canvas_getpx.c \
 							canvas/canvas_setpx.c \
 							canvas/draw/draw_rect.c \
 							canvas/draw/draw_circle.c \
@@ -69,16 +73,43 @@ SRC						= main.c \
 							lifecycle/cub_init.c \
 							lifecycle/cub_load.c \
 							lifecycle/cub_run.c \
+							lifecycle/cub_update.c \
 							lifecycle/cub_destroy.c \
+							lifecycle/init/cub_init_display.c \
+							lifecycle/init/cub_init_screen.c \
+							lifecycle/init/cub_init_window.c \
 							mlx_handler/loop_handle.c \
 							mlx_handler/key_press_handle.c \
 							mlx_handler/key_release_handle.c \
 							mlx_handler/destroy_handle.c \
+							map/map_gettile.c \
+							player/player_move.c \
+							player/player_rotate.c \
+							parse/parse_map.c \
+							parse/parse_map_params.c \
+							parse/parse_map_content.c \
+							parse/parse_color.c \
+							parse/parse_texture.c \
+							parse/check_map_format.c \
+							raycasting/ray_init.c \
+							raycasting/ray_cast.c \
+							strlst/strlst_delete.c \
+							strlst/strlst_push.c \
+							strlst/strlst_toarray.c \
+							ui/ui_draw_minimap.c \
+							ui/ui_draw_background.c \
+							ui/ui_draw_projection.c \
+							ui/get_tile_color.c \
 							utils/print_error.c \
 							utils/get_input.c \
 							utils/ft_modf.c \
 							utils/swap.c \
-							utils/rgb.c
+							utils/rgb.c \
+							utils/factors_add.c \
+							utils/is_empty.c \
+							utils/skip.c \
+							utils/ft_isnonspace.c \
+							utils/ft_strtrim_f.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
 
@@ -103,8 +134,8 @@ clean:
 
 fclean:					clean
 						$(RM) $(NAME)
-						$(MAKE) -C $(DIR_LIBFT) fclean
-						$(MAKE) -C $(DIR_MLX) clean
+						# $(MAKE) -C $(DIR_LIBFT) fclean
+						# $(MAKE) -C $(DIR_MLX) clean
 
 re:						fclean all
 
