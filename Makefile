@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 14:57:13 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 16:03:26 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-CFLAGS					+= -g3
 
 LDLIBS					+= -lft
 LDLIBS					+= -lmlx
