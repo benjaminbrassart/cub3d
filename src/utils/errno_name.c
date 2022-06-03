@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:32:28 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 11:36:40 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:16:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ char	*errno_name(int errnum)
 			break ;
 		++p;
 	}
-	return (p->name);
+	return ((char *)p->name);
 }
