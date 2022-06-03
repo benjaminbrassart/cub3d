@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_empty.c                                         :+:      :+:    :+:   */
+/*   ft_isnonspace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/02 07:52:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:44:07 by bbrassar         ###   ########.fr       */
+/*   Created: 2022/06/03 08:46:12 by bbrassar          #+#    #+#             */
+/*   Updated: 2022/06/03 08:46:46 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "ft.h"
 
-int	is_empty(char const *line)
+int	ft_isnonspace(int c)
 {
-	return (*skip(line, ft_isspace) == 0);
+	return (!ft_isspace(c));
 }
