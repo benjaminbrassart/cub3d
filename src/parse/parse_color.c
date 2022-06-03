@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 02:12:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:27:48 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:29:08 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	color(char const *line, t_cub *cub, t_lut_parser const *lut)
 {
 	if (cub->colors[lut->index] != 0)
 	{
-		print_error(lut->elem, ERROR_PARAM_DUPLICATED);
+		print_error(lut->elem, ERROR_PARAM_DUP);
 		return (RES_FAILURE);
 	}
 	cub->colors[lut->index] = _parse_color(line, lut);

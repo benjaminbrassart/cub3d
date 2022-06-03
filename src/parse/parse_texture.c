@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 02:12:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 12:11:11 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:29:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	texture(char const *line, t_cub *cub, t_lut_parser const *lut)
 {
 	if (cub->textures[lut->index].img != NULL)
 	{
-		print_error(lut->elem, ERROR_PARAM_DUPLICATED);
+		print_error(lut->elem, ERROR_PARAM_DUP);
 		return (RES_FAILURE);
 	}
 	if (canvas_load(cub, line, &cub->textures[lut->index]) == NULL)
