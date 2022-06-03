@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_params.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 10:56:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:03:10 by msainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ static void	_print_invalid_identifier(char const *line);
 static int	_check_lut(char const *line, t_cub *cub);
 static int	_handle_error(int fd);
 
+int parse_map_param1(int gnl, int fd, char *line)
+{
+	if (gnl == -1)
+	{
+		print_error("reading", strerror(errno));
+		return (-1);
+	}
+	
+	return (0);
+}
+
 int	parse_map_params(t_cub *cub, int fd)
 {
 	char	*line;
@@ -37,12 +48,9 @@ int	parse_map_params(t_cub *cub, int fd)
 	{
 		gnl = get_next_line(fd, &line);
 		if (gnl == 0)
-			break ;
-		if (gnl == -1)
-		{
-			print_error("reading", strerror(errno));
+			break ;		
+		if (parse_map_param1(gnl, fd, line) != 0)
 			return (_handle_error(fd));
-		}
 		if (is_empty(line))
 		{
 			free(line);
