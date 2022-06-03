@@ -6,12 +6,9 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 10:59:06 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 12:18:45 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# TODO remove when deploying
-DEBUG					= true
 
 NAME					= cub3d
 
@@ -26,9 +23,7 @@ NAME_LIBS				+= $(NAME_MLX)
 
 CC						= cc
 CFLAGS					+= -Wall
-ifneq ($(DEBUG), true)
 CFLAGS					+= -Werror
-endif
 CFLAGS					+= -Wextra
 CFLAGS					+= -c
 CFLAGS					+= -MMD -MP
@@ -37,10 +32,6 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-
-ifeq ($(DEBUG), true)
-CFLAGS					+= -g3
-endif
 
 LDLIBS					+= -lft
 LDLIBS					+= -lmlx
@@ -109,7 +100,8 @@ SRC						= main.c \
 							utils/is_empty.c \
 							utils/skip.c \
 							utils/ft_isnonspace.c \
-							utils/ft_strtrim_f.c
+							utils/ft_strtrim_f.c \
+							utils/errno_name.c
 OBJ						= $(SRC:%.c=$(DIR_OBJ)/%.o)
 DEP						= $(OBJ:.o=.d)
 
@@ -134,8 +126,6 @@ clean:
 
 fclean:					clean
 						$(RM) $(NAME)
-						# $(MAKE) -C $(DIR_LIBFT) fclean
-						# $(MAKE) -C $(DIR_MLX) clean
 
 re:						fclean all
 

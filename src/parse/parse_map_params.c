@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:29:55 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:40:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parse_map_params(t_cub *cub, int fd)
 			break ;
 		if (gnl == -1)
 		{
-			print_error("reading", strerror(errno));
+			print_syserror("reading");
 			return (_handle_error(fd));
 		}
 		if (!_loop(cub, fd, line, &count))

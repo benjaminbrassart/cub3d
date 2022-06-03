@@ -6,12 +6,14 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:36:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:29:44 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:10:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBERR_H
 # define CUBERR_H
+
+# include "g_errno_name.h"
 
 # include "def.h"
 
@@ -21,30 +23,31 @@
 # define ERROR_USAGE				"cub3d <map.cub>"
 # define ERROR_EXTENSION			"File extension must be "
 
-# define ERROR_INIT_DISPLAY			"failed to initialize display"
-# define ERROR_INIT_WINDOW			"failed to initialize window"
-# define ERROR_INIT_CANVAS			"failed to initialize canvas"
+# define ERROR_INIT_DISPLAY			"Failed to initialize display"
+# define ERROR_INIT_WINDOW			"Failed to initialize window"
+# define ERROR_INIT_CANVAS			"Failed to initialize canvas"
 
-# define ERROR_MAP_INVALID_TILE		"invalid tile"
-# define ERROR_MAP_NO_SPACE			"not enough space"
-# define ERROR_MAP_SURROUND			"not surrounded by walls"
-# define ERROR_MAP_HOLE				"empty space next to floor"
-# define ERROR_MAP_SPAWN_DUPLICATED	"duplicated spawn"
-# define ERROR_MAP_NO_SPAWN			"no spawn found"
+# define ERROR_MAP_INVALID_TILE		"Invalid tile"
+# define ERROR_MAP_NO_SPACE			"Not enough space"
+# define ERROR_MAP_SURROUND			"Not surrounded by walls"
+# define ERROR_MAP_HOLE				"Empty space next to floor"
+# define ERROR_MAP_SPAWN_DUPLICATED	"Duplicated spawn"
+# define ERROR_MAP_NO_SPAWN			"No spawn found"
 
-# define ERROR_PARAM_INVALID		"invalid identifier"
-# define ERROR_PARAM_DUPLICATED		"duplicated identifier"
-# define ERROR_PARAM_MISSING		"missing indentifier"
+# define ERROR_PARAM_INVALID		"Invalid identifier"
+# define ERROR_PARAM_DUPLICATED		"Duplicated identifier"
+# define ERROR_PARAM_MISSING		"Missing indentifier"
 
-# define ERROR_COLOR_TRAILING		"trailing character"
-# define ERROR_COLOR_BOUNDS			"value out of bounds"
-# define ERROR_COLOR_FORMAT			"invalid color format"
+# define ERROR_COLOR_TRAILING		"Trailing character"
+# define ERROR_COLOR_BOUNDS			"Value out of bounds"
+# define ERROR_COLOR_FORMAT			"Invalid color format"
 
 /**
  * Print a message on the standard error, followed by a newline
  *
- * format: "PROGNAME: prefix: msg"
+ * format: "Error <newline> prefix: msg"
  */
 void	print_error(char const *prefix, char const *msg);
+void	print_syserror(char const *prefix);
 
 #endif

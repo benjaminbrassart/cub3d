@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_load.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:22:14 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 11:35:50 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:36:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	cub_load(t_cub *cub)
 	fd = open(cub->map_file, O_RDONLY);
 	if (fd == -1)
 	{
-		print_error(cub->map_file, strerror(errno));
+		print_syserror(cub->map_file);
 		return (RES_FAILURE);
 	}
 	res = parse_map(cub, fd);
