@@ -6,16 +6,20 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 02:12:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 03:47:11 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 08:57:27 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cuberr.h"
 #include "parse.h"
+#include "utils.h"
 
 #include "ft.h"
 
+#include <limits.h>
+
 static uint32_t	_parse_color(char const *str, t_lut_parser const *lut);
+static int		_parse_byte(char const **s, char const *elem, uint8_t *byte_p);
 
 int	color(char const *line, t_cub *cub, t_lut_parser const *lut)
 {
@@ -32,38 +36,47 @@ int	color(char const *line, t_cub *cub, t_lut_parser const *lut)
 
 static uint32_t	_parse_color(char const *str, t_lut_parser const *lut)
 {
-	int			nbr;
-	int			bytes;
-	char		*end;
+	int			offset;
 	uint32_t	rgb;
 
-	bytes = 24;
-	rgb = 0xFF << bytes;
-	while (bytes != 0)
+	offset = 0;
+	rgb = (0xFF << 24);
+	while (offset < 3)
 	{
-		nbr = ft_strtoi(str, &end);
-		if (nbr < 0 || nbr > 255)
-		{
-			print_error(lut->elem, "value out of bounds [0-255]");
-			return (0);
-		}
-		bytes -= 8;
-		str = end;
-		if (bytes != 0 && *str++ != ',')
-		{
-			print_error(lut->elem, "invalid inner character");
-			return (0);
-		}
-		rgb |= (nbr << (bytes));
+		if (!_parse_byte(&str, lut->elem, ((uint8_t *)&rgb) + 2 - offset))
+			return (0x00000000);
+		if (++offset < 3)
+			++str;
 	}
-	while (*end)
+	if (is_empty(str))
+		return (rgb);
+	print_error(lut->elem, "trailing comma");
+	return (0x00000000);
+}
+
+static int	_parse_byte(char const **s, char const *elem, uint8_t *byte_p)
+{
+	unsigned int	value;
+	char const		*p;
+
+	value = 0;
+	*s = skip(*s, ft_isspace);
+	p = *s;
+	while (ft_isdigit(*p) && value <= UINT8_MAX)
 	{
-		if (bytes != 0 && ft_isspace(*end) == 0)
-		{
-			print_error(lut->elem, "invalid trailing character");
-			return (0);
-		}
-		++end;
+		value = value * 10 + *p - '0';
+		++p;
 	}
-	return (rgb);
+	p = skip(p, ft_isspace);
+	if (value > UINT8_MAX)
+		print_error(elem, "value out of bounds [0-255]");
+	else if (*p != ',' && *p != 0)
+		print_error(elem, "invalid color format");
+	else
+	{
+		*s = p;
+		*byte_p = (uint8_t)value;
+		return (RES_SUCCESS);
+	}
+	return (RES_FAILURE);
 }
