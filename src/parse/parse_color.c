@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 02:12:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:57:27 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:27:48 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	color(char const *line, t_cub *cub, t_lut_parser const *lut)
 {
 	if (cub->colors[lut->index] != 0)
 	{
-		print_error(lut->elem, "duplicated identifier");
+		print_error(lut->elem, ERROR_PARAM_DUPLICATED);
 		return (RES_FAILURE);
 	}
 	cub->colors[lut->index] = _parse_color(line, lut);
@@ -50,7 +50,7 @@ static uint32_t	_parse_color(char const *str, t_lut_parser const *lut)
 	}
 	if (is_empty(str))
 		return (rgb);
-	print_error(lut->elem, "trailing comma");
+	print_error(lut->elem, ERROR_COLOR_TRAILING);
 	return (0x00000000);
 }
 
@@ -69,9 +69,9 @@ static int	_parse_byte(char const **s, char const *elem, uint8_t *byte_p)
 	}
 	p = skip(p, ft_isspace);
 	if (value > UINT8_MAX)
-		print_error(elem, "value out of bounds [0-255]");
+		print_error(elem, ERROR_COLOR_BOUNDS);
 	else if (*p != ',' && *p != 0)
-		print_error(elem, "invalid color format");
+		print_error(elem, ERROR_COLOR_FORMAT);
 	else
 	{
 		*s = p;

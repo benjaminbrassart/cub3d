@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:48:05 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:29:55 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	parse_map_params(t_cub *cub, int fd)
 	}
 	if (count == 6)
 		return (RES_SUCCESS);
-	print_error("map", "missing parameter");
+	print_error("map", ERROR_PARAM_MISSING);
 	return (RES_FAILURE);
 }
 
@@ -82,7 +82,7 @@ static void	_print_invalid_identifier(char const *line)
 	identifier = ft_strndup(line, s - line);
 	if (identifier == NULL)
 		return ;
-	print_error(identifier, "invalid identifier");
+	print_error(identifier, ERROR_PARAM_INVALID);
 	free(identifier);
 }
 

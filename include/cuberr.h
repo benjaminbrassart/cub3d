@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:36:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:17:45 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:29:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "def.h"
 
+// # define ERROR_USAGE(prog, ext)		prog " <map." ext ">"
+// # define ERROR_EXTENSION(ext)		"File extension must be " ext
+
 # define ERROR_USAGE				"cub3d <map.cub>"
 # define ERROR_EXTENSION			"File extension must be "
 
@@ -22,12 +25,14 @@
 # define ERROR_INIT_WINDOW			"failed to initialize window"
 # define ERROR_INIT_CANVAS			"failed to initialize canvas"
 
+# define ERROR_MAP_INVALID_TILE		"invalid tile"
 # define ERROR_MAP_NO_SPACE			"not enough space"
 # define ERROR_MAP_SURROUND			"not surrounded by walls"
 # define ERROR_MAP_HOLE				"empty space next to floor"
 # define ERROR_MAP_SPAWN_DUPLICATED	"duplicated spawn"
 # define ERROR_MAP_NO_SPAWN			"no spawn found"
 
+# define ERROR_PARAM_INVALID		"invalid identifier"
 # define ERROR_PARAM_DUPLICATED		"duplicated identifier"
 # define ERROR_PARAM_MISSING		"missing indentifier"
 

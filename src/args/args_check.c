@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:30:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 01:01:17 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:21:59 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,23 @@
 
 int	args_check(int argc, char const *argv[])
 {
-	char	*ext;
+	char		*ext;
+	char const	*delim;
 
 	if (argc != 2)
 	{
-		print_error("usage", PROGNAME " <map.cub>");
+		print_error("usage", ERROR_USAGE);
 		return (RES_FAILURE);
 	}
-	ext = ft_strrstr(argv[1], FILEEXT);
-	if (ext == NULL || ft_strcmp(ext, FILEEXT) != 0)
+	delim = ft_strrchr(argv[1], '/');
+	if (delim == NULL)
+		delim = argv[1];
+	else
+		++delim;
+	ext = ft_strrstr(delim, FILEEXT);
+	if (ext == NULL || delim == ext || ft_strcmp(ext, FILEEXT) != 0)
 	{
-		print_error(argv[1], "File extension must be " FILEEXT);
+		print_error(delim, ERROR_EXTENSION FILEEXT);
 		return (RES_FAILURE);
 	}
 	return (RES_SUCCESS);

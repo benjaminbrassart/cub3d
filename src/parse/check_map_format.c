@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 07:41:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 17:22:15 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:29:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_map_format(t_cub *cub)
 
 	if (cub->map_height < 2)
 	{
-		print_error("map", "not enough space");
+		print_error("map", ERROR_MAP_NO_SPACE);
 		return (0);
 	}
 	y = 0;
@@ -56,7 +56,7 @@ static int	_check_surround(t_cub *cub, size_t x, size_t y)
 		if (y == 0 || y == cub->map_height - 1 || x == 0
 			|| x == cub->map_lengths[y] - 1)
 		{
-			print_error("map", "not surrounded by walls");
+			print_error("map", ERROR_MAP_SURROUND);
 			return (0);
 		}
 	}
@@ -74,7 +74,7 @@ static int	_check_space(t_cub *cub, size_t x, size_t y)
 		|| (y < cub->map_height - 1 && x < cub->map_lengths[y + 1]
 			&& _is_ground(cub->map[y + 1][x])))
 	{
-		print_error("map", "empty space next to floor");
+		print_error("map", ERROR_MAP_HOLE);
 		return (0);
 	}
 	cub->map[y][x] = '1';
