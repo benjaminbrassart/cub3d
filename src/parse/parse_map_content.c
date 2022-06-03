@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 08:04:56 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:33:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void	_free_str(char *s);
-static int	_set_map_dimensions(t_cub *cub);
 static int	_cleanup(t_cub *cub, t_strlst **lst);
 static int	_handle_error(int fd, char *line, t_strlst **lst);
 
@@ -73,12 +71,12 @@ int	parse_map_content(t_cub *cub, int fd)
 		}
 		if (cub->player.x < 0 && cub->player.y < 0)
 		{
-			print_error("map", "duplicated spawn");
+			print_error("map", ERROR_MAP_SPAWN_DUPLICATED);
 			return (_handle_error(fd, line, &lst));
 		}
 		if (ft_strpbrk(line, MAP_TILES) == NULL)
 		{
-			print_error("map", "invalid tile");
+			print_error("map", ERROR_MAP_INVALID_TILE);
 			return (_handle_error(fd, line, &lst));
 		}
 		if (!strlst_push(&lst, line))
@@ -95,45 +93,35 @@ int	parse_map_content(t_cub *cub, int fd)
 static int	_handle_error(int fd, char *line, t_strlst **lst)
 {
 	get_next_line(fd, NULL);
-	strlst_delete(lst, _free_str);
+	strlst_delete(lst, free);
 	free(line);
 	return (RES_FAILURE);
 }
 
-static void	_free_str(char *s)
-{
-	free(s);
-}
-
-static int	_set_map_dimensions(t_cub *cub)
+static int	_cleanup(t_cub *cub, t_strlst **lst)
 {
 	size_t	n;
 
-	cub->map_lengths = malloc(cub->map_height * sizeof (*cub->map_lengths));
-	if (cub->map_lengths == NULL)
+	if (cub->player.x < 0 || cub->player.y < 0)
+	{
+		print_error("map", ERROR_MAP_NO_SPAWN);
 		return (RES_FAILURE);
+	}
+	cub->map = strlst_toarray(*lst);
+	cub->map_lengths = malloc(cub->map_height * sizeof (*cub->map_lengths));
+	if (cub->map == NULL || cub->map_lengths == NULL)
+	{
+		print_error(NULL, strerror(errno));
+		strlst_delete(lst, free);
+		free(cub->map);
+		free(cub->map_lengths);
+		return (RES_FAILURE);
+	}
 	n = 0;
 	while (n < cub->map_height)
 	{
 		cub->map_lengths[n] = ft_strlen(cub->map[n]);
 		++n;
-	}
-	return (RES_SUCCESS);
-}
-
-static int	_cleanup(t_cub *cub, t_strlst **lst)
-{
-	if (cub->player.x < 0 || cub->player.y < 0)
-	{
-		print_error("map", "no spawn found");
-		return (RES_FAILURE);
-	}
-	cub->map = strlst_toarray(*lst);
-	if (cub->map == NULL || !_set_map_dimensions(cub))
-	{
-		print_error(NULL, strerror(errno));
-		strlst_delete(lst, _free_str);
-		return (RES_FAILURE);
 	}
 	strlst_delete(lst, NULL);
 	return (RES_SUCCESS);

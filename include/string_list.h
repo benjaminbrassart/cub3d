@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 01:20:41 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/01 01:33:05 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 10:34:02 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ struct s_strlst
 
 char	**strlst_toarray(t_strlst const *head);
 int		strlst_push(t_strlst **head, char *value);
-void	strlst_delete(t_strlst **head, void (*free_value)(char *));
+void	strlst_delete(t_strlst **head, void (*free_value)(void *));
 
 #endif // STRING_LIST_H
