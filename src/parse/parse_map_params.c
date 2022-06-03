@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:42:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 07:25:35 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 08:48:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,10 @@ static int	_handle_error(int fd)
 
 static void	_print_invalid_identifier(char const *line)
 {
-	char	*identifier;
-	size_t	n;
+	char		*identifier;
+	char const	*s = skip(line, ft_isnonspace);
 
-	n = 0;
-	while (!ft_isspace(line[n]))
-		++n;
-	identifier = ft_strndup(line, n);
+	identifier = ft_strndup(line, s - line);
 	if (identifier == NULL)
 		return ;
 	print_error(identifier, "invalid identifier");
@@ -93,8 +90,7 @@ static int	_check_lut(char const *line, t_cub *cub)
 {
 	t_lut_parser const	*parser;
 
-	while (ft_isspace(*line))
-		++line;
+	line = skip(line, ft_isspace);
 	parser = g_lut_parser;
 	while (parser->elem != NULL)
 	{
@@ -107,8 +103,6 @@ static int	_check_lut(char const *line, t_cub *cub)
 		_print_invalid_identifier(line);
 		return (RES_FAILURE);
 	}
-	line += parser->length;
-	while (ft_isspace(*line))
-		++line;
+	line = skip(line + parser->length, ft_isspace);
 	return (parser->func(line, cub, parser));
 }
