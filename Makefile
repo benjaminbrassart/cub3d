@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 12:18:09 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 12:18:45 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,8 +114,8 @@ $(NAME_LIBS):			.FORCE
 
 $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
 						@mkdir -p $(@D)
-						# @printf -- '\033[34m$(CC) $(CFLAGS) $< -o $@\033[0m\n'
-						$(CC) $(CFLAGS) $< -o $@
+						@printf -- '\033[34m$(CC) $(CFLAGS) $< -o $@\033[0m\n'
+						@$(CC) $(CFLAGS) $< -o $@
 
 -include $(DEP)
 
