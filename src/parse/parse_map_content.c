@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_content.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/02 12:27:42 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/03 08:04:56 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ int	parse_map_content(t_cub *cub, int fd)
 	char		*line;
 	char		*pers;
 	int			gnl;
-	int			db;
 	t_strlst	*lst;
+	int			i;
 
 	line = NULL;
-	db = 0;
 	while (true)
 	{
 		gnl = get_next_line(fd, &line);
@@ -67,11 +66,14 @@ int	parse_map_content(t_cub *cub, int fd)
 		{
 			cub->player.x = pers - line;
 			cub->player.y = cub->map_height;
-			db += 1;
+			i = 0;
+			while (MAP_PERS[i] != *pers)
+				++i;
+			cub->player.yaw = i * M_PI_2;
 		}
-		if (db > 1)
+		if (cub->player.x < 0 && cub->player.y < 0)
 		{
-			print_error("map", "double personnage");
+			print_error("map", "duplicated spawn");
 			return (_handle_error(fd, line, &lst));
 		}
 		if (ft_strpbrk(line, MAP_TILES) == NULL)
@@ -109,18 +111,23 @@ static int	_set_map_dimensions(t_cub *cub)
 
 	cub->map_lengths = malloc(cub->map_height * sizeof (*cub->map_lengths));
 	if (cub->map_lengths == NULL)
-		return (0);
+		return (RES_FAILURE);
 	n = 0;
 	while (n < cub->map_height)
 	{
 		cub->map_lengths[n] = ft_strlen(cub->map[n]);
 		++n;
 	}
-	return (1);
+	return (RES_SUCCESS);
 }
 
 static int	_cleanup(t_cub *cub, t_strlst **lst)
 {
+	if (cub->player.x < 0 || cub->player.y < 0)
+	{
+		print_error("map", "no spawn found");
+		return (RES_FAILURE);
+	}
 	cub->map = strlst_toarray(*lst);
 	if (cub->map == NULL || !_set_map_dimensions(cub))
 	{
