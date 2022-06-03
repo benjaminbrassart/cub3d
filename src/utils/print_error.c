@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:36:42 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 11:41:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:07:17 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	print_error(char const *prefix, char const *msg)
 {
-	write(STDERR_FILENO, PROGNAME ": ", sizeof (PROGNAME) + 1);
+	write(STDERR_FILENO, "Error\n", 7);
 	if (prefix != NULL)
 	{
 		write(STDERR_FILENO, prefix, ft_strlen(prefix));
@@ -38,8 +38,8 @@ void	print_syserror(char const *prefix)
 
 	if (errnum == 0)
 		return ;
+	write(STDERR_FILENO, "Error\n", 7);
 	msg = strerror(errno);
-	write(STDERR_FILENO, PROGNAME ": ", sizeof (PROGNAME) + 1);
 	if (prefix != NULL)
 	{
 		write(STDERR_FILENO, prefix, ft_strlen(prefix));

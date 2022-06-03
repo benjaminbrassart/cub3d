@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 11:36:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 11:37:15 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 12:10:38 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 /**
  * Print a message on the standard error, followed by a newline
  *
- * format: "PROGNAME: prefix: msg"
+ * format: "Error <newline> prefix: msg"
  */
 void	print_error(char const *prefix, char const *msg);
 void	print_syserror(char const *prefix);
