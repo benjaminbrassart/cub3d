@@ -6,12 +6,9 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/12 10:53:24 by bbrassar          #+#    #+#              #
-#    Updated: 2022/06/03 11:36:27 by bbrassar         ###   ########.fr        #
+#    Updated: 2022/06/03 12:16:30 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# TODO remove when deploying
-DEBUG					= true
 
 NAME					= cub3d
 
@@ -37,10 +34,7 @@ CFLAGS					+= -I$(DIR_LIBFT)
 CFLAGS					+= -I$(DIR_MLX)
 CFLAGS					+= -Iinclude
 CFLAGS					+= -I.
-
-ifeq ($(DEBUG), true)
-CFLAGS					+= -g3
-endif
+CFLAGS					+= -O3
 
 LDLIBS					+= -lft
 LDLIBS					+= -lmlx
@@ -123,8 +117,8 @@ $(NAME_LIBS):			.FORCE
 
 $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
 						@mkdir -p $(@D)
-						@printf -- '\033[34m$(CC) $(CFLAGS) $< -o $@\033[0m\n'
-						@$(CC) $(CFLAGS) $< -o $@
+						# @printf -- '\033[34m$(CC) $(CFLAGS) $< -o $@\033[0m\n'
+						$(CC) $(CFLAGS) $< -o $@
 
 -include $(DEP)
 
@@ -135,8 +129,6 @@ clean:
 
 fclean:					clean
 						$(RM) $(NAME)
-						# $(MAKE) -C $(DIR_LIBFT) fclean
-						# $(MAKE) -C $(DIR_MLX) clean
 
 re:						fclean all
 
