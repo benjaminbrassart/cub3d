@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 02:12:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 10:56:42 by bbrassar         ###   ########.fr       */
+/*   Updated: 2022/06/03 11:40:51 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	texture(char const *line, t_cub *cub, t_lut_parser const *lut)
 			&cub->textures[lut->index]) == NULL)
 	{
 		free(file);
-		print_error(lut->elem, strerror(errno));
+		print_syserror(lut->elem);
 		return (RES_FAILURE);
 	}
 	free(file);
