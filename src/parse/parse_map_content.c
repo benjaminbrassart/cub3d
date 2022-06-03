@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_content.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msainton <msainton@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:47:26 by bbrassar          #+#    #+#             */
-/*   Updated: 2022/06/03 13:08:09 by msainton         ###   ########.fr       */
+/*   Updated: 2022/06/03 13:16:36 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,54 +24,8 @@
 
 static int	_cleanup(t_cub *cub, t_strlst **lst);
 static int	_handle_error(int fd, char *line, t_strlst **lst);
-
-int	_skip_empty(int fd, char **line, int *gnl_p)
-{
-	*line = NULL;
-	while (true)
-	{
-		*gnl_p = get_next_line(fd, line);
-		if (*gnl_p == 0)
-			break ;
-		if (*gnl_p == -1)
-		{
-			print_error("reading", strerror(errno));
-			return (0);
-		}
-		if (!is_empty(*line))
-			break ;
-		free(*line);
-		*line = NULL;
-	}
-	return (1);
-}
-
-int	_check_line(t_cub *cub, char *line, t_strlst **lst)
-{
-	char const	*pers = ft_strpbrk(line, MAP_PERS);
-	int			i;
-
-	if (pers != NULL)
-	{
-		if (ft_strpbrk(pers + 1, MAP_PERS) != NULL)
-			return (print_error("map", ERROR_MAP_SPAWN_DUPLICATED), 0);
-		cub->player.x = pers - line;
-		cub->player.y = cub->map_height;
-		i = 0;
-		while (MAP_PERS[i] != *pers)
-			++i;
-		cub->player.yaw = i * M_PI_2;
-	}
-	if (cub->player.x < 0 && cub->player.y < 0)
-		print_error("map", ERROR_MAP_SPAWN_DUPLICATED);
-	else if (ft_strpbrk(line, MAP_TILES) == NULL)
-		print_error("map", ERROR_MAP_INVALID_TILE);
-	else if (!strlst_push(lst, line))
-		print_error(NULL, strerror(errno));
-	else
-		return (1);
-	return (0);
-}
+static int	_skip_empty(int fd, char **line, int *gnl_p);
+static int	_check_line(t_cub *cub, char *line, t_strlst **lst);
 
 int	parse_map_content(t_cub *cub, int fd)
 {
@@ -136,4 +90,52 @@ static int	_cleanup(t_cub *cub, t_strlst **lst)
 	}
 	strlst_delete(lst, NULL);
 	return (RES_SUCCESS);
+}
+
+static int	_skip_empty(int fd, char **line, int *gnl_p)
+{
+	*line = NULL;
+	while (true)
+	{
+		*gnl_p = get_next_line(fd, line);
+		if (*gnl_p == 0)
+			break ;
+		if (*gnl_p == -1)
+		{
+			print_error("reading", strerror(errno));
+			return (0);
+		}
+		if (!is_empty(*line))
+			break ;
+		free(*line);
+		*line = NULL;
+	}
+	return (1);
+}
+
+static int	_check_line(t_cub *cub, char *line, t_strlst **lst)
+{
+	char const	*pers = ft_strpbrk(line, MAP_PERS);
+	int			i;
+
+	if (pers != NULL)
+	{
+		if (cub->player.x >= 0 || ft_strpbrk(pers + 1, MAP_PERS) != NULL)
+			return (print_error("map", ERROR_MAP_SPAWN_DUPLICATED), 0);
+		cub->player.x = pers - line;
+		cub->player.y = cub->map_height;
+		i = 0;
+		while (MAP_PERS[i] != *pers)
+			++i;
+		cub->player.yaw = i * M_PI_2;
+		if (cub->player.x < 0)
+			print_error("map", ERROR_MAP_SPAWN_DUPLICATED);
+	}
+	if (ft_strpbrk(line, MAP_TILES) == NULL)
+		print_error("map", ERROR_MAP_INVALID_TILE);
+	else if (!strlst_push(lst, line))
+		print_error(NULL, strerror(errno));
+	else
+		return (1);
+	return (0);
 }
